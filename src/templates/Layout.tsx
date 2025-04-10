@@ -15,6 +15,7 @@ export const Layout = ({ title, children }: { title: string; children: ReactNode
   return (
     <html lang={lang}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <AddResources type="css" resources={buildModuleFileUrl("dist/server/style.css")} />
         <title>{title}</title>
       </head>
