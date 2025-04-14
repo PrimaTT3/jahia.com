@@ -22,7 +22,7 @@ jahiaComponent(
   ({ "jcr:title": title, subtitle, image, ctaLabel, ...cta }: Props) =>
     cta["j:linkType"] === "none" ? (
       <header
-        style={{ backgroundImage: `url(${buildNodeUrl(image)})` }}
+        style={{ backgroundImage: `url(${buildNodeUrl(image)})`, paddingBlock: "4rem" }}
         className={classes.hero}
         data-theme="night"
       >
