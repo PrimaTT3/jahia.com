@@ -1,6 +1,7 @@
 .nav {
   position: sticky;
   inset-block-start: 0;
+  padding: 0.5rem;
   background-color: color-mix(in srgb, var(--jahia-background) 75%, transparent);
   z-index: 1;
   backdrop-filter: blur(0.5rem);
@@ -12,14 +13,14 @@
   }
 }
 
-.bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
+.link {
+  color: inherit;
+  text-decoration: inherit;
 }
 
-.link {
+.barLink {
+  @apply _pack-2;
+  padding: 0.5rem;
   color: inherit;
   text-decoration: inherit;
 }
@@ -55,11 +56,15 @@
   color: var(--jahia-blue);
   padding: calc(0.75rem - 1px);
   align-items: center;
+
+  @screen md {
+    display: none;
+  }
 }
 
 .menu {
   position: fixed;
-  width: 100%;
+  inset-inline: 0;
   padding: 0.5rem;
   background: var(--jahia-background);
   color: transparent; /* Fading the color makes the transition smoother */
@@ -110,8 +115,7 @@
   display: inline-flex;
   gap: 0.75rem;
   align-items: center;
-  background: var(--jahia-navy-blue);
-  color: var(--jahia-neutral-50);
+  color: inherit;
   padding: 0.75rem;
   border-radius: 0.25rem;
   text-transform: uppercase;
@@ -130,4 +134,12 @@
   height: 1em;
   background: var(--jahia-neutral-600);
   transform: scaleY(calc(40 / 14)); /* Fill the height of the button */
+}
+
+.desktop {
+  display: none;
+
+  @screen md {
+    display: flex;
+  }
 }

@@ -1,5 +1,6 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import classes from "./NavBar.module.css";
+import clsx from "clsx";
 
 export default function NavBarClient({
   children,
@@ -20,11 +21,45 @@ export default function NavBarClient({
   const [open, setOpen] = useState(false);
   const [submenu, setSubmenu] = useState<string | null>(null);
 
+  // Automatically close the menu when the screen is resized to a larger size
+  useEffect(() => {
+    // Breakpoint defined in unocss.config.js
+    const md = window.matchMedia("(min-width: 800px)");
+
+    const handler = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        setOpen(false);
+        setSubmenu(null);
+      }
+    };
+
+    md.addEventListener("change", handler);
+    return () => md.removeEventListener("change", handler);
+  });
+
   return (
     <nav className={classes.nav} data-theme="night" data-open={open}>
-      <div className={classes.bar}>
+      <div className="_pack-2" style={{ maxWidth: "var(--jahia-width)", marginInline: "auto" }}>
         {children}
-        <div style={{ flex: 1, display: "flex", gap: ".25rem", justifyContent: "end" }}>
+        <div className="_pack-2" style={{ flex: 1, justifyContent: "end" }}>
+          <div className={clsx(classes.desktop, "_pack-2")}>
+            {pages.map(({ href, current, title }) => (
+              <a
+                key={href}
+                href={href}
+                aria-current={current ? "page" : undefined}
+                className={classes.barLink}
+              >
+                {title}
+                <span className="i-ri:arrow-down-wide-line" />
+              </a>
+            ))}
+            <a href="#contact" className={classes.cta2}>
+              Contact
+              <span className={classes.cta2Line} />
+              <span className="i-ri:arrow-right-wide-line" />
+            </a>
+          </div>
           <a href="#demo" className={classes.cta}>
             Réserver une démo
           </a>

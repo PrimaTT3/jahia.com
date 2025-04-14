@@ -1,7 +1,13 @@
 import { defineConfig } from "unocss/vite";
 import { presetIcons } from "unocss";
+import { transformerDirectives } from "unocss";
 
 export default defineConfig({
+  theme: {
+    breakpoints: {
+      md: "800px",
+    },
+  },
   rules: [
     [
       /^_stack-(\d+)$/,
@@ -11,8 +17,15 @@ export default defineConfig({
         "gap": `${gap / 4}rem`,
       }),
     ],
+    [
+      /^_pack-(\d+)$/,
+      ([, size]) => ({
+        "display": "flex",
+        "align-items": "center",
+        "gap": `${size / 4}rem`,
+      }),
+    ],
   ],
-  // Disable the default presets
   presets: [
     presetIcons({
       extraProperties: {
@@ -21,4 +34,5 @@ export default defineConfig({
       },
     }),
   ],
+  transformers: [transformerDirectives()],
 });
