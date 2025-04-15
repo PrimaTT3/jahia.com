@@ -64,29 +64,42 @@
   position: fixed;
   inset-inline: 0;
   padding: 0.5rem;
-  background: var(--jahia-background);
-  color: transparent; /* Fading the color makes the transition smoother */
-  transform: scaleY(0);
+  /* Copy properties of the nav to make the transition smoother */
+  background-color: color-mix(in srgb, var(--jahia-background) 75%, transparent);
+  backdrop-filter: blur(0.5rem);
+  color: transparent; /* Fading the color to avoid the compression effect of scaleY(0) */
+  transform: translateY(0.5rem) /* The menu needs to be placed outside the padding of the nav */
+    scaleY(0);
   transform-origin: top;
   transition:
     transform 150ms ease-out,
-    color 150ms ease-out;
+    color 150ms ease-out,
+    background-color 150ms ease-out;
 
   [data-open="true"] & {
-    transform: scaleY(1);
+    background: var(--jahia-background);
+    transform: translateY(0.5rem) scaleY(1);
     color: inherit;
   }
 }
 
 .submenu {
   > ul {
-    display: none;
+    height: 0;
+    contain: paint;
     list-style: none;
     padding-inline-start: 1rem;
+    transform: translateY(-1rem);
+    opacity: 0;
+    transition:
+      transform 150ms ease-out,
+      opacity 150ms ease-out;
   }
 
   &[data-open="true"] > ul {
-    display: block;
+    height: auto;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
