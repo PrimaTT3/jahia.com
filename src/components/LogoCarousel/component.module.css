@@ -51,6 +51,7 @@
   width: 8rem;
   height: 8rem;
   color: transparent;
+  user-select: none;
   background: var(--logo) center no-repeat;
 
   [data-mode="mono"] & {
