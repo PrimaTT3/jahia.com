@@ -20,7 +20,7 @@ jahiaComponent(
       <div className={clsx(classes.column, classes.center, "_stack-4")}>
         <h1>{title || "Title not defined"}</h1>
         {subtitle && <p>{subtitle}</p>}
-        {cta["j:linkType"] !== "none" && (
+        {cta.ctaType !== "none" && (
           <p>
             <CTA cta={cta} />
           </p>

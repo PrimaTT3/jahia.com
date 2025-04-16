@@ -17,7 +17,7 @@ jahiaComponent(
           <h1>{title || "Title not defined"}</h1>
           {subtitle && <p>{subtitle}</p>}
         </div>
-        {cta["j:linkType"] !== "none" && (
+        {cta.ctaType !== "none" && (
           <p>
             <CTA cta={cta} />
           </p>

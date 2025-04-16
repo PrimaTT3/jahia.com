@@ -6,4 +6,4 @@ export type Props = {
   "subtitle"?: string;
   "image": JCRNodeWrapper;
   "background"?: "plusses" | "stripes";
-} & ({ "j:linkType": "none" } | CTAProps);
+} & ({ ctaType: "none" } | CTAProps);
