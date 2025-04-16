@@ -1,8 +1,8 @@
 /* Used by default.server.tsx */
 .section {
   max-inline-size: 1000px;
-  padding-inline: 1rem;
-  margin: 1rem auto;
+  padding: 1rem;
+  margin-inline: auto;
   overflow: hidden;
 }
 
