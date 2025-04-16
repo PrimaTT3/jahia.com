@@ -1,11 +1,11 @@
 .nav {
   position: sticky;
   inset-block-start: 0;
-  padding: 0.5rem;
-  background-color: color-mix(in srgb, var(--jahia-background) 75%, transparent);
   z-index: 1;
-  backdrop-filter: blur(0.5rem);
+  padding: 0.5rem;
   color: var(--jahia-color);
+  background-color: color-mix(in srgb, var(--jahia-background) 75%, transparent);
+  backdrop-filter: blur(0.5rem);
   transition: background 150ms ease-out;
 
   &[data-open="true"] {
@@ -20,6 +20,7 @@
 
 .barLink {
   @apply _pack-2;
+
   padding: 0.5rem;
   color: inherit;
   text-decoration: inherit;
@@ -33,27 +34,27 @@
   display: inline-flex;
   gap: 0.75rem;
   align-items: center;
-  background: var(--jahia-blue);
-  color: var(--jahia-neutral-700);
   padding: 0.75rem;
-  border-radius: 0.25rem;
-  text-transform: uppercase;
   font-family: monospace;
   font-size: 0.875rem;
   line-height: 1;
-  text-decoration: inherit;
-  border: 1px solid var(--jahia-blue);
+  color: var(--jahia-neutral-700);
   text-align: center;
+  text-transform: uppercase;
+  text-decoration: inherit;
+  background: var(--jahia-blue);
+  border: 1px solid var(--jahia-blue);
+  border-radius: 0.25rem;
 }
 
 .menuButton {
-  border: 1px solid var(--jahia-border);
   display: inline-flex;
-  border-radius: 0.25rem;
-  background: transparent;
-  color: var(--jahia-blue);
-  padding: calc(0.75rem - 1px);
   align-items: center;
+  padding: calc(0.75rem - 1px);
+  color: var(--jahia-blue);
+  background: transparent;
+  border: 1px solid var(--jahia-border);
+  border-radius: 0.25rem;
 
   @screen md {
     display: none;
@@ -64,10 +65,13 @@
   position: fixed;
   inset-inline: 0;
   padding: 0.5rem;
+
+  /* Fading the color to avoid the compression effect of scaleY(0) */
+  color: transparent;
+
   /* Copy properties of the nav to make the transition smoother */
   background-color: color-mix(in srgb, var(--jahia-background) 75%, transparent);
   backdrop-filter: blur(0.5rem);
-  color: transparent; /* Fading the color to avoid the compression effect of scaleY(0) */
   transform: translateY(0.5rem) /* The menu needs to be placed outside the padding of the nav */
     scaleY(0);
   transform-origin: top;
@@ -77,9 +81,9 @@
     background-color 150ms ease-out;
 
   [data-open="true"] & {
+    color: inherit;
     background: var(--jahia-background);
     transform: translateY(0.5rem) scaleY(1);
-    color: inherit;
   }
 
   @screen md {
@@ -91,15 +95,15 @@
   display: none;
 
   @screen md {
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
-    background: var(--jahia-neutral-50);
+    display: block;
     padding: 1rem;
-    box-shadow: 0 0.25rem 1rem color-mix(in srgb, var(--jahia-neutral-700) 25%, transparent);
     color: var(--jahia-neutral-700);
+    background: var(--jahia-neutral-50);
     border-radius: 0.25rem;
+    box-shadow: 0 0.25rem 1rem color-mix(in srgb, var(--jahia-neutral-700) 25%, transparent);
     opacity: 0;
     transition: opacity 150ms ease-out;
 
@@ -109,28 +113,28 @@
   }
 
   > ul {
-    list-style: none;
     padding: 0;
+    list-style: none;
   }
 }
 
 .submenu {
   > ul {
     height: 0;
-    contain: paint;
-    list-style: none;
     padding-inline-start: 1rem;
-    transform: translateY(-1rem);
+    list-style: none;
     opacity: 0;
+    transform: translateY(-1rem);
     transition:
       transform 150ms ease-out,
       opacity 150ms ease-out;
+    contain: paint;
   }
 
   &[data-open="true"] > ul {
     height: auto;
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -144,10 +148,10 @@
 
   > button {
     padding: 0.5rem;
+    padding-inline-start: 0.75rem;
+    color: inherit;
     background: transparent;
     border: transparent;
-    color: inherit;
-    padding-inline-start: 0.75rem;
     border-inline-start: 1px solid var(--jahia-border);
   }
 }
@@ -156,16 +160,16 @@
   display: inline-flex;
   gap: 0.75rem;
   align-items: center;
-  color: inherit;
   padding: 0.75rem;
-  border-radius: 0.25rem;
-  text-transform: uppercase;
   font-family: monospace;
   font-size: 0.875rem;
   line-height: 1;
+  color: inherit;
+  text-align: center;
+  text-transform: uppercase;
   text-decoration: inherit;
   border: 1px solid var(--jahia-neutral-600);
-  text-align: center;
+  border-radius: 0.25rem;
 }
 
 .cta2Line {
