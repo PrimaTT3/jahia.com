@@ -82,7 +82,7 @@ export const Layout = ({
             )}
           </>
         )}
-        (jsonLd && <script type="application/ld+json">{jsonLd}</script>)
+        {jsonLd && <script type="application/ld+json">{jsonLd}</script>}
         <AddResources type="css" resources={buildModuleFileUrl("dist/server/index.css")} />
       </head>
       <body>
