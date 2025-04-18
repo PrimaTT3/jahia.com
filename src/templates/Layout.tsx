@@ -13,16 +13,6 @@ import "virtual:uno.css";
 import "./global.css";
 import "./themes.css";
 
-/** Only used in editor hint. */
-const extractJsonLdType = (jsonLd: string) => {
-  try {
-    const parsedJsonLd = JSON.parse(jsonLd);
-    return parsedJsonLd["@type"] ? `@type ${parsedJsonLd["@type"]}` : "No @type";
-  } catch {
-    return false;
-  }
-};
-
 /** Places `children` in an html page. */
 export const Layout = ({
   title,
@@ -36,7 +26,7 @@ export const Layout = ({
   description?: string;
   keywords?: string[];
   openGraphImage?: JCRNodeWrapper;
-  jsonLd?: string;
+  jsonLd?: string[];
   children: ReactNode;
 }) => {
   const { currentResource, renderContext } = useServerContext();
@@ -81,7 +71,11 @@ export const Layout = ({
             )}
           </>
         )}
-        {jsonLd && <script type="application/ld+json">{jsonLd}</script>}
+        {jsonLd?.map((content) => (
+          <script type="application/ld+json" key={content}>
+            {content}
+          </script>
+        ))}
         <AddResources type="css" resources={buildModuleFileUrl("dist/server/index.css")} />
       </head>
       <body>
@@ -94,7 +88,7 @@ export const Layout = ({
             "OpenGraph image":
               openGraphImage &&
               `${openGraphImage.getPropertyAsString("jcr:title") ?? "No title"} (${openGraphImage.getPropertyAsString("j:width")}x${openGraphImage.getPropertyAsString("j:height")}, ${prettyBytes(openGraphImage.getNode("jcr:content").getProperty("jcr:data").getLength())})`,
-            "JSON-LD": jsonLd && extractJsonLdType(jsonLd),
+            "JSON-LD": jsonLd?.length,
           })}
         />
         {children}

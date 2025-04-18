@@ -20,4 +20,4 @@
  - secondaryCTALabel (string) i18n
 
 [jahiacommix:seoOptions] mixin extends=jnt:page itemtype=seo
- - jsonLd (string, textarea) i18n
+ - jsonLd (string, textarea) i18n multiple

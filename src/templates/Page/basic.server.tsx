@@ -8,7 +8,7 @@ interface Props {
   "jcr:description"?: string;
   "seoKeywords"?: string[];
   "openGraphImage"?: JCRNodeWrapper;
-  "jsonLd"?: string;
+  "jsonLd"?: string[];
 }
 
 jahiaComponent(
