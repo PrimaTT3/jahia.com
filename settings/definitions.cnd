@@ -26,5 +26,5 @@
 
 [jahiacommix:seoOptions] mixin extends=jnt:page itemtype=seo
  - jsonLd (string, textarea) i18n multiple
- - noindex (boolean) i18n = false
- - nofollow (boolean) i18n = false
+ - noindex (boolean) = false i18n
+ - nofollow (boolean) = false i18n
