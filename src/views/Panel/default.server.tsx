@@ -1,18 +1,21 @@
 import { buildNodeUrl, jahiaComponent } from "@jahia/javascript-modules-library";
-import { LinkTypeCTA, type LinkTypeProps } from "../../LinkTypeCTA.jsx";
 import type { JCRNodeWrapper } from "org.jahia.services.content";
 import classes from "./component.module.css";
 import clsx from "clsx";
+import type { Props as CardProps } from "../Card/types.js";
+import { MixinCTA } from "../../mixins/CTA/server.jsx";
 
-type Props = (LinkTypeProps | { ctaType: "none" }) & {
-  "jcr:title"?: string;
-  "body"?: string;
-  "image"?: JCRNodeWrapper;
-  "swap"?: boolean;
+export type Props = CardProps & {
+  image?: JCRNodeWrapper;
+  swap?: boolean;
 };
 
 jahiaComponent(
-  { componentType: "view", nodeType: "jahiacom:panel" },
+  {
+    componentType: "view",
+    nodeType: "jahiacom:panel",
+    priority: 1,
+  },
   ({ "jcr:title": title, body, image, swap, ...cta }: Props) => (
     <article
       className={clsx(
@@ -36,7 +39,7 @@ jahiaComponent(
         {body && <div className="_richtext" dangerouslySetInnerHTML={{ __html: body }}></div>}
         {cta.ctaType !== "none" && (
           <p>
-            <LinkTypeCTA cta={cta} />
+            <MixinCTA cta={cta} />
           </p>
         )}
       </div>
