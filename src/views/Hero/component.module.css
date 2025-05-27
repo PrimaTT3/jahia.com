@@ -46,3 +46,27 @@
     min-height: 100%;
   }
 }
+
+.cover {
+  @apply _stack-8;
+
+  padding: 4rem 1rem;
+  color: var(--jahia-color);
+  background: var(--jahia-container-background) center / cover;
+  contain: paint;
+
+  .header {
+    width: 100%;
+    max-width: var(--jahia-width);
+    margin-inline: auto;
+  }
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

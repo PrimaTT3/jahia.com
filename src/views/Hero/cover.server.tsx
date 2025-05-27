@@ -3,6 +3,25 @@ import classes from "./component.module.css";
 import type { Props } from "./types.js";
 import clsx from "clsx";
 import { MixinCTA } from "../../mixins/CTA/server.jsx";
+import type { JCRNodeWrapper } from "org.jahia.services.content";
+
+const BackgroundImage = ({ image }: { image: JCRNodeWrapper }) => {
+  const src = buildNodeUrl(image);
+  const alt = image.getPropertyAsString("jcr:title");
+  const width = image.getPropertyAsString("j:width");
+  const height = image.getPropertyAsString("j:height");
+
+  return (
+    <img
+      src={`${src}?w=400`}
+      srcSet={`${src}?w=400 400w, ${src}?w=800 800w, ${src}?w=1600 1600w, ${src}?w=2400 2400w`}
+      alt={alt}
+      width={width}
+      height={height}
+      className={classes.background}
+    />
+  );
+};
 
 jahiaComponent(
   {
@@ -11,24 +30,17 @@ jahiaComponent(
     name: "cover",
   },
   ({ theme, "jcr:title": title, subtitle, image, ...cta }: Props) => (
-    <>
-      {image && <link rel="preload" as="image" href={buildNodeUrl(image)} fetchPriority="high" />}
-      <header
-        // Despite being mandatory, the image can be missing in some cases (e.g. new translation)
-        style={{ backgroundImage: image && `url(${buildNodeUrl(image)})`, paddingBlock: "4rem" }}
-        className={classes.hero}
-        data-theme={theme}
-      >
-        <div className={clsx(classes.header, "_stack-4")}>
-          <h1>{title || "Title not defined"}</h1>
-          {subtitle && <p>{subtitle}</p>}
-          {cta.ctaType !== "none" && (
-            <p>
-              <MixinCTA cta={cta} />
-            </p>
-          )}
-        </div>
-      </header>
-    </>
+    <header className={classes.cover} data-theme={theme}>
+      {image && <BackgroundImage image={image} />}
+      <div className={clsx(classes.header, "_stack-4")}>
+        <h1>{title || "Title not defined"}</h1>
+        {subtitle && <p>{subtitle}</p>}
+        {cta.ctaType !== "none" && (
+          <p>
+            <MixinCTA cta={cta} />
+          </p>
+        )}
+      </div>
+    </header>
   ),
 );
