@@ -6,8 +6,10 @@ import type { ImgHTMLAttributes } from "react";
  * Array of default image sizes to create in the `srcset` attrbute.
  *
  * `Infinity` is used to indicate that the image should be served at its original size.
+ *
+ * 720 is targeted at Lighthouse/Google PageSpeed Insights recommendations.
  */
-const defaultSizes = [360, 640, 960, 1440, 1920, Infinity];
+const defaultSizes = [360, 720, 1440, 1920, Infinity];
 
 /** This component creates a <picture> element for an image node, enhanced for Cloudimage. */
 export const Image = ({
