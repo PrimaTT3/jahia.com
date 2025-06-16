@@ -32,7 +32,13 @@ jahiaComponent(
       )}
       <div className={classes.text}>
         <h3>{title}</h3>
-        {body && <div className="_richtext" dangerouslySetInnerHTML={{ __html: body }}></div>}
+        {body && (
+          <div
+            className="_richtext"
+            style={{ flex: 1 }}
+            dangerouslySetInnerHTML={{ __html: body }}
+          ></div>
+        )}
         {cta.ctaType !== "none" && (
           <p>
             <MixinCTA cta={cta} />
