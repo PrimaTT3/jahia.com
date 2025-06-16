@@ -51,9 +51,9 @@
   @apply _stack-8;
 
   padding: 4rem 1rem;
+  contain: paint;
   color: var(--jahia-color);
   background: var(--jahia-container-background) center / cover;
-  contain: paint;
 
   .header {
     width: 100%;

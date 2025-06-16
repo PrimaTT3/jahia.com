@@ -105,13 +105,13 @@
   > ul {
     height: 0;
     padding-inline-start: 1rem;
+    contain: paint;
     list-style: none;
     opacity: 0;
     transform: translateY(-1rem);
     transition:
       transform var(--jahia-motion-timing),
       opacity var(--jahia-timing);
-    contain: paint;
   }
 
   &[data-open="true"] > ul {
