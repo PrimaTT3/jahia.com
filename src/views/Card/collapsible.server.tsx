@@ -7,7 +7,8 @@ jahiaComponent(
   {
     componentType: "view",
     nodeType: "jahiacom:card",
-    name: "collapsible",
+    // Prefix the view name with "hidden." to prevent manual selection in the UI
+    name: "hidden.collapsible",
   },
   ({ "jcr:title": title, body, ...cta }: Props, { renderContext }) => (
     <article className={classes.collapsible} aria-expanded={renderContext.isEditMode()}>

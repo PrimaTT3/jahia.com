@@ -13,7 +13,7 @@ jahiaComponent(
     if (renderContext.isEditMode()) {
       return (
         <section className="_stack-3">
-          <RenderChildren view="collapsible" />
+          <RenderChildren view="hidden.collapsible" />
         </section>
       );
     }
@@ -45,7 +45,7 @@ jahiaComponent(
           })}
         </script>
         <HydrateInBrowser child={Accordion}>
-          <RenderChildren view="collapsible" />
+          <RenderChildren view="hidden.collapsible" />
         </HydrateInBrowser>
       </>
     );
