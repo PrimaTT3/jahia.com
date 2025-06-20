@@ -21,5 +21,8 @@ export default {
         message: (selector) => `Expected class selector "${selector}" to be camelCase`,
       },
     ],
+
+    // CSS Modules: allow :global selectors
+    "selector-pseudo-class-no-unknown": [true, { ignorePseudoClasses: ["global"] }],
   },
 };

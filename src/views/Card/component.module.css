@@ -3,10 +3,12 @@
 
   composes: item from "../../theme/theme.module.css";
   padding: 1.5rem;
+}
 
-  &:first-child {
-    @apply _cut-before;
-  }
+/** Cut off the first card in a container */
+:global(._container) > .card:first-child,
+:global(._container) > :first-child > .card:first-child {
+  @apply _cut-before;
 }
 
 .collapsible {

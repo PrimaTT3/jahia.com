@@ -1,6 +1,7 @@
 import { jahiaComponent, RenderChildren } from "@jahia/javascript-modules-library";
 import type { ContainerProps } from "../../theme/index.jsx";
 import classes from "./component.module.css";
+import clsx from "clsx";
 
 type Columns = "100" | "50-50" | "67-33" | "33-67" | "33-33-33" | "25-25-25-25" | "irregular-3-2";
 type Width = "100" | "75" | "50";
@@ -33,7 +34,12 @@ jahiaComponent(
           {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
         </header>
       )}
-      <div className={classes.grid} data-columns={columns} data-width={width} data-gap={gap}>
+      <div
+        className={clsx(classes.grid, "_container")}
+        data-columns={columns}
+        data-width={width}
+        data-gap={gap}
+      >
         <RenderChildren />
       </div>
     </section>
