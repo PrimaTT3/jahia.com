@@ -30,7 +30,11 @@ export default function CarouselClient({
 
   return (
     <div ref={wrapper} className={classes.wrapper} data-scrolling={scrolling} data-mode={mode}>
-      <div className={classes.carousel} style={{ "--duration": `${length * 5}s` }}>
+      <div
+        className={classes.carousel}
+        // @ts-expect-error CSS variable not supported in TS
+        style={{ "--duration": `${length * 5}s` }}
+      >
         <div>{children}</div>
         <div style={{ display: scrolling ? undefined : "none" }}>{children}</div>
       </div>

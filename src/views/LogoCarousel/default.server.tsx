@@ -14,6 +14,7 @@ jahiaComponent(
         <div
           key={logo.getName()}
           className={classes.logo}
+          // @ts-expect-error CSS variable not supported in TS
           style={{ "--logo": `url(${buildNodeUrl(logo)})` }}
         >
           {/* Include the alt text directly in the logo */}

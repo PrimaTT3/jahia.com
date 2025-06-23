@@ -7,6 +7,11 @@
   gap: 0 1rem;
 }
 
+.light {
+  display: grid;
+  gap: 1rem 4rem;
+}
+
 .text {
   @apply _stack-4;
 
@@ -22,8 +27,15 @@
   background: var(--jahia-inner-border);
 }
 
+.lightImage {
+  align-self: center;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
 @container (width < 600px) {
-  .image {
+  .image,
+  .lightImage {
     @apply _cut-before;
   }
 
@@ -49,11 +61,13 @@
     @apply _cut-after;
   }
 
-  .left .image {
+  .left .image,
+  .left .lightImage {
     @apply _cut-before;
   }
 
-  .right .image {
+  .right .image,
+  .right .lightImage {
     @apply _cut-after;
 
     order: 1;
