@@ -38,6 +38,15 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     }
 
+    &[data-columns="irregular-67-33"] {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      > :nth-child(4n),
+      > :nth-child(4n + 1) {
+        grid-column: span 2;
+      }
+    }
+
     &[data-columns="33-33-33"] {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }

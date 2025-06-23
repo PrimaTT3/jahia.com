@@ -6,7 +6,7 @@ export default function EditorHints({
   hints,
   children,
 }: {
-  title: string;
+  title?: string;
   hints: () => Record<string, unknown>;
   children?: ReactNode;
 }) {
@@ -28,7 +28,7 @@ export default function EditorHints({
         borderRadius: "4px",
       }}
     >
-      <strong>{title}</strong>
+      {title && <strong>{title}</strong>}
       <ul style={{ display: "contents", listStyle: "none" }}>
         {list.map(([key, value]) => (
           <li key={key} className="_pack-1" style={{ color: value ? "inherit" : "tomato" }}>
