@@ -8,6 +8,7 @@ jahiaComponent(
     priority: 1,
   },
   ({ text, css }) => {
+    // See https://react.dev/reference/react-dom/components/style#rendering-an-inline-css-stylesheet
     if (css) {
       const id = useId();
       return (
