@@ -1,0 +1,2 @@
+[jahiacommix:customCss] mixin extends=jnt:bigText
+ - css (string, textarea) mandatory
