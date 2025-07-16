@@ -21,6 +21,7 @@ interface Props {
   "jcr:description"?: string;
   "seoKeywords"?: string[];
   "openGraphImage"?: JCRNodeWrapper;
+  "htmlTitle"?: string;
   "jsonLd"?: string[];
   "noindex"?: boolean;
   "nofollow"?: boolean;
@@ -34,6 +35,7 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
 
   const {
     "jcr:title": title,
+    "htmlTitle": htmlTitle,
     "jcr:description": description,
     "seoKeywords": keywords,
     "openGraphImage": openGraphImage,
@@ -48,8 +50,8 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{title}</title>
-        <meta property="og:title" content={title} />
+        <title>{htmlTitle || title}</title>
+        <meta property="og:title" content={htmlTitle || title} />
         {description && (
           <>
             <meta name="description" content={description} />
@@ -99,7 +101,7 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
         <EditorHints
           title={"Page SEO checklist:"}
           hints={() => ({
-            "Title": title,
+            "Title": htmlTitle || title,
             "Description": description,
             "Keywords": keywords?.join(", "),
             "OpenGraph image":
