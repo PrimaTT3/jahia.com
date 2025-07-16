@@ -26,6 +26,7 @@
   --jahia-background: transparent;
   --jahia-color: var(--jahia-neutral-600);
   --jahia-title-color: var(--jahia-neutral-700);
+  --jahia-icon-color: var(--jahia-neutral-400);
   --jahia-border: var(--jahia-neutral-300);
   --jahia-inner-border: var(--jahia-neutral-300);
 
@@ -45,6 +46,7 @@
   --jahia-background: var(--jahia-neutral-50);
   --jahia-color: var(--jahia-neutral-600);
   --jahia-title-color: var(--jahia-neutral-700);
+  --jahia-icon-color: var(--jahia-neutral-400);
   --jahia-border: var(--jahia-neutral-100);
   --jahia-inner-border: var(--jahia-neutral-200);
 }
@@ -54,6 +56,7 @@
   --jahia-background: transparent;
   --jahia-color: var(--jahia-neutral-100);
   --jahia-title-color: var(--jahia-neutral-50);
+  --jahia-icon-color: var(--jahia-neutral-600);
   --jahia-border: var(--jahia-neutral-600);
   --jahia-inner-border: var(--jahia-neutral-600);
 }
