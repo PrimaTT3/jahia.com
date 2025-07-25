@@ -9,7 +9,7 @@ jahiaComponent(
   },
   ({ "jcr:title": title, icon }: Props, { currentNode }) => (
     <a className={classes.badge} href={buildNodeUrl(currentNode)}>
-      {icon && <img src={buildNodeUrl(icon)} alt="" width="16" height="16" />}
+      {icon && <img src={`${buildNodeUrl(icon)}?w=32&h=32`} alt="" width="16" height="16" />}
       {title}
     </a>
   ),

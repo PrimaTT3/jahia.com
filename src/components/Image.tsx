@@ -11,7 +11,7 @@ import type { ImgHTMLAttributes } from "react";
  */
 const defaultSizes = [360, 720, 1440, 1920, Infinity];
 
-/** This component creates a <picture> element for an image node, enhanced for Cloudimage. */
+/** This component creates an <img> element for an image node, enhanced for Cloudimage. */
 export const Image = ({
   image,
   sizes = defaultSizes,

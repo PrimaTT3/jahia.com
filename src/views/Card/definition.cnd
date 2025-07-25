@@ -1,2 +1,3 @@
 [jahiacom:card] > jnt:content, mix:title, jahiacommix:cta, jahiacommix:component
+ - icon (weakreference, picker) i18n < jmix:image
  - body (string, richtext) i18n
