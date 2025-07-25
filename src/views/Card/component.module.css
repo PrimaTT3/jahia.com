@@ -6,8 +6,8 @@
 }
 
 /** Cut off the first card in a container */
-:global(._container) > .card:first-child,
-:global(._container) > :first-child > .card:first-child {
+:global(._container) > .card:first-of-type,
+:global(._container) > :first-child > .card:first-of-type {
   @apply _cut-before;
 }
 
