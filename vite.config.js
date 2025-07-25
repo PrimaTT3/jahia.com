@@ -16,4 +16,9 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    // Jahia breaks SVG inlined in CSS, prevent assets from being inlined
+    // https://github.com/Jahia/jahia-private/issues/3637
+    assetsInlineLimit: 0,
+  },
 });
