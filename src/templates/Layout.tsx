@@ -1,6 +1,5 @@
 import {
   AbsoluteArea,
-  AddResources,
   buildModuleFileUrl,
   useServerContext,
 } from "@jahia/javascript-modules-library";
@@ -85,17 +84,17 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
             )}
           </>
         )}
-        {jsonLd?.map((content) => (
-          <script type="application/ld+json" key={content}>
-            {content}
-          </script>
-        ))}
+        <link rel="stylesheet" href={buildModuleFileUrl("dist/assets/style.css")} />
         {stylesheets?.filter(Boolean).map((stylesheet) => (
           <style key={stylesheet.getIdentifier()}>{stylesheet.getPropertyAsString("css")}</style>
         ))}
         {noindex && <meta name="robots" content="noindex" />}
         {nofollow && <meta name="robots" content="nofollow" />}
-        <AddResources type="css" resources={buildModuleFileUrl("dist/assets/style.css")} />
+        {jsonLd?.map((content) => (
+          <script type="application/ld+json" key={content}>
+            {content}
+          </script>
+        ))}
       </head>
       <body>
         <EditorHints

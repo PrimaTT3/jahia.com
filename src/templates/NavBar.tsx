@@ -6,7 +6,7 @@ import {
 } from "@jahia/javascript-modules-library";
 import type { JCRNodeWrapper } from "org.jahia.services.content";
 import type { JCRSiteNode } from "org.jahia.services.content.decorator";
-import jahia from "./jahia-light.svg";
+import jahia from "./jahia-light.svg?no-inline";
 import NavBarClient, { type Entry } from "./NavBar.client.jsx";
 
 const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
