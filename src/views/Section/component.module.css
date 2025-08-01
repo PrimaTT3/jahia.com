@@ -70,10 +70,6 @@
   }
 
   @container (width >= 800px) {
-    &[data-columns="25-25-25-25"] {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
     &[data-columns="irregular-3-2"] {
       grid-template-columns: repeat(6, 1fr);
 
@@ -85,6 +81,12 @@
       > :nth-child(5n + 2) {
         grid-column: span 3;
       }
+    }
+  }
+
+  @container (width >= 1000px) {
+    &[data-columns="25-25-25-25"] {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 }
