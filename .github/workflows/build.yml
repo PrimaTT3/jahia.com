@@ -23,7 +23,6 @@ jobs:
         env:
           JAHIA_USER: ${{ secrets.JAHIA_USER }}
           JAHIA_HOST: ${{ secrets.JAHIA_HOST }}
-          JAHIA_IGNORE_CHECKS: "false"
 
   lighthouse:
     runs-on: ubuntu-latest
