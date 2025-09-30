@@ -64,11 +64,8 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
               property="og:image"
               content={openGraphImage.getAbsoluteUrl(renderContext.getRequest())}
             />
-            {openGraphImage.hasProperty("jcr:title") && (
-              <meta
-                property="og:image:alt"
-                content={openGraphImage.getPropertyAsString("jcr:title")}
-              />
+            {openGraphImage.getDisplayableName() && (
+              <meta property="og:image:alt" content={openGraphImage.getDisplayableName()} />
             )}
             {openGraphImage.hasProperty("j:width") && (
               <meta
@@ -105,7 +102,7 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
             "Keywords": keywords?.join(", "),
             "OpenGraph image":
               openGraphImage &&
-              `${openGraphImage.getPropertyAsString("jcr:title") ?? "No title"} (${openGraphImage.getPropertyAsString("j:width")}x${openGraphImage.getPropertyAsString("j:height")}, ${prettyBytes(openGraphImage.getNode("jcr:content").getProperty("jcr:data").getLength())})`,
+              `${openGraphImage.getDisplayableName()} (${openGraphImage.getPropertyAsString("j:width")}x${openGraphImage.getPropertyAsString("j:height")}, ${prettyBytes(openGraphImage.getNode("jcr:content").getProperty("jcr:data").getLength())})`,
             "JSON-LD": jsonLd?.length,
           })}
         />

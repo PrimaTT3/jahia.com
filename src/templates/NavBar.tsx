@@ -1,12 +1,12 @@
 import {
-  // buildModuleFileUrl,
+  buildModuleFileUrl,
   buildNodeUrl,
   getChildNodes,
-  HydrateInBrowser,
+  Island,
 } from "@jahia/javascript-modules-library";
 import type { JCRNodeWrapper } from "org.jahia.services.content";
 import type { JCRSiteNode } from "org.jahia.services.content.decorator";
-// import jahia from "./jahia-light.svg?no-inline";
+import jahia from "./jahia-light.svg?no-inline";
 import NavBarClient, { type Entry } from "./NavBar.client.jsx";
 
 const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
@@ -22,7 +22,7 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
     // If the node is a menu entry, recursively get its children
     if (node.isNodeType("jnt:navMenuText"))
       return {
-        title: node.getPropertyAsString("jcr:title"),
+        title: node.getDisplayableName(),
         children: getEntries(node, current),
       };
 
@@ -32,7 +32,7 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
       : node;
 
     return {
-      title: node.getPropertyAsString("jcr:title"),
+      title: node.getDisplayableName(),
       href: buildNodeUrl(target),
       current: current === target.getIdentifier(),
     };
@@ -54,21 +54,18 @@ export default function NavBar({
     site.getProperty("secondaryCTALink").getValue().getNode();
 
   return (
-    <HydrateInBrowser
-      child={NavBarClient}
+    <Island
+      component={NavBarClient}
       props={{
         // Menu CTAs
         primaryCTA: primaryCTALink && {
           href: buildNodeUrl(primaryCTALink),
-          label:
-            site.getPropertyAsString("primaryCTALabel") ||
-            primaryCTALink.getPropertyAsString("jcr:title"),
+          label: site.getPropertyAsString("primaryCTALabel") || primaryCTALink.getDisplayableName(),
         },
         secondaryCTA: secondaryCTALink && {
           href: buildNodeUrl(secondaryCTALink),
           label:
-            site.getPropertyAsString("secondaryCTALabel") ||
-            secondaryCTALink.getPropertyAsString("jcr:title"),
+            site.getPropertyAsString("secondaryCTALabel") || secondaryCTALink.getDisplayableName(),
         },
         // This can quickly get out of hand, if there are too many pages in the menu we need
         // to rethink the implementation
@@ -79,9 +76,8 @@ export default function NavBar({
         href={buildNodeUrl(root)}
         aria-current={current.getIdentifier() === root.getIdentifier() ? "page" : undefined}
       >
-        {/* <img src={buildModuleFileUrl(jahia)} alt="Jahia" width="90" height="40" /> */}
-        TODO: coder le menu
+        <img src={buildModuleFileUrl(jahia)} alt="Jahia" width="90" height="40" />
       </a>
-    </HydrateInBrowser>
+    </Island>
   );
 }

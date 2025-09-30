@@ -32,7 +32,7 @@ export const MixinCTA = ({ cta }: { cta: MixinCTAProps }) => (
   >
     {cta.ctaLabel ||
       (cta.ctaType === "internal"
-        ? (cta["j:linknode"]?.getPropertyAsString("jcr:title") ?? "Internal link not defined")
+        ? (cta["j:linknode"]?.getDisplayableName() ?? "Internal link not defined")
         : cta["j:linkTitle"])}
   </CTA>
 );

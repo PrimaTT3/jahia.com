@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import classes from "./NavBar.module.css";
 import clsx from "clsx";
-import { useFloating, autoUpdate, offset } from "@floating-ui/react-dom";
+import { useFloating, autoUpdate, offset, shift } from "@floating-ui/react-dom";
 import { CTA } from "../mixins/CTA/index.jsx";
 
 export type Group = { title: string; children: Entry[] };
@@ -22,12 +22,16 @@ export default function NavBarClient({
   const [open, setOpen] = useState(false);
   const [submenu, setSubmenu] = useState<string | null>(null);
 
+  const subentries = entries.find(
+    (entry): entry is Group => !("href" in entry) && entry.title === submenu,
+  )?.children;
+
   /** Used to disable the animation on first render */
   const [animate, setAnimate] = useState(false);
 
   const { refs, floatingStyles } = useFloating({
     whileElementsMounted: autoUpdate,
-    middleware: [offset(16)],
+    middleware: [offset(16), shift()],
   });
 
   const close = useCallback(() => {
@@ -123,6 +127,7 @@ export default function NavBarClient({
           </button>
         </div>
       </div>
+      {/* Mobile menu */}
       <div className={classes.mobileMenu} inert={!open}>
         {entries.map((entry) =>
           "href" in entry ? (
@@ -198,6 +203,7 @@ export default function NavBarClient({
           )}
         </div>
       </div>
+      {/* Desktop menu */}
       <div
         inert={!open}
         ref={refs.setFloating}
@@ -209,43 +215,48 @@ export default function NavBarClient({
         }}
         onTransitionEnd={() => setAnimate(false)}
         className={classes.desktopMenu}
+        data-theme="cloudy"
       >
-        <ul>
-          {entries
-            .find((entry): entry is Group => !("href" in entry) && entry.title === submenu)
-            ?.children.map((entry) =>
-              "href" in entry ? (
-                <li key={entry.href}>
-                  <a
-                    href={entry.href}
-                    aria-current={entry.current ? "page" : undefined}
-                    className={classes.link}
-                  >
-                    {entry.title}
-                  </a>
-                </li>
-              ) : (
-                <li key={entry.title}>
+        <ul
+          className={clsx(
+            subentries?.every((entry) => !("href" in entry))
+              ? classes.columns
+              : classes.singleColumn,
+          )}
+        >
+          {subentries?.map((entry) =>
+            "href" in entry ? (
+              <li key={entry.href}>
+                <a
+                  href={entry.href}
+                  aria-current={entry.current ? "page" : undefined}
+                  className={classes.link}
+                >
                   {entry.title}
-                  <ul>
-                    {entry.children.map(
-                      (entry) =>
-                        "href" in entry && (
-                          <li key={entry.href}>
-                            <a
-                              href={entry.href}
-                              aria-current={entry.current ? "page" : undefined}
-                              className={classes.link}
-                            >
-                              {entry.title}
-                            </a>
-                          </li>
-                        ),
-                    )}
-                  </ul>
-                </li>
-              ),
-            )}
+                </a>
+              </li>
+            ) : (
+              <li key={entry.title} className={classes.menuColumn}>
+                <small>{entry.title}</small>
+                <ul>
+                  {entry.children.map(
+                    (entry) =>
+                      "href" in entry && (
+                        <li key={entry.href}>
+                          <a
+                            href={entry.href}
+                            aria-current={entry.current ? "page" : undefined}
+                            className={classes.link}
+                          >
+                            {entry.title}
+                          </a>
+                        </li>
+                      ),
+                  )}
+                </ul>
+              </li>
+            ),
+          )}
         </ul>
       </div>
     </nav>

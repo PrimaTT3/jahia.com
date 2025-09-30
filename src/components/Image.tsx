@@ -21,7 +21,7 @@ export const Image = ({
   "sizes"
 >) => {
   const baseSrc = buildNodeUrl(image);
-  const alt = image.getPropertyAsString("jcr:title") ?? "";
+  const alt = image.getDisplayableName();
   const mime = image.getNode("jcr:content")?.getPropertyAsString("jcr:mimeType") ?? "image/jpeg";
 
   // Ignore vector images

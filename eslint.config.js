@@ -1,12 +1,13 @@
 // @ts-check
+import eslintReact from "@eslint-react/eslint-plugin";
 import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
-import path from "node:path";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
-import eslintReact from "@eslint-react/eslint-plugin";
+import path from "node:path";
+import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
   {
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },

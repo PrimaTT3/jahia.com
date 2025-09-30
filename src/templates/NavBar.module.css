@@ -84,13 +84,13 @@ to fold the menu if it overflows. Let's go with a static value for now.
 
 .desktopMenu {
   display: none;
+  min-width: 12rem;
 
   @container (width >= breakpoint) {
     position: absolute;
     top: 0;
     left: 0;
     display: block;
-    padding: 1rem;
     color: var(--jahia-neutral-700);
     background: var(--jahia-neutral-50);
     border-radius: 0.25rem;
@@ -103,9 +103,54 @@ to fold the menu if it overflows. Let's go with a static value for now.
     }
   }
 
-  > ul {
-    padding: 0;
+  ul {
     list-style: none;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--jahia-neutral-100);
+      border-radius: 0.125rem;
+    }
+  }
+}
+
+.singleColumn {
+  padding: 1rem;
+}
+
+.columns {
+  display: flex;
+  padding: 0;
+
+  > * {
+    min-width: 12rem;
+    padding: 1rem;
+  }
+
+  > * + * {
+    border-inline-start: 1px solid var(--jahia-inner-border);
+  }
+}
+
+.menuColumn {
+  display: flex;
+  flex-direction: column;
+
+  small {
+    padding: 0.5rem;
+    font-weight: 500;
+    color: var(--jahia-blue);
+    text-transform: uppercase;
+  }
+
+  ul {
+    padding: 0;
   }
 }
 

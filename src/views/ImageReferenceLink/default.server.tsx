@@ -12,7 +12,7 @@ jahiaComponent(
   },
   ({ "jcr:title": title, "j:node": image }: Props) =>
     image ? (
-      <Image image={image} alt={title ?? image.getPropertyAsString("jcr:title") ?? ""} />
+      <Image image={image} alt={title ?? image.getDisplayableName()} />
     ) : (
       <span>No image referenced</span>
     ),

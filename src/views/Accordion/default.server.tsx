@@ -1,6 +1,6 @@
 import {
   getChildNodes,
-  HydrateInBrowser,
+  Island,
   jahiaComponent,
   RenderChildren,
 } from "@jahia/javascript-modules-library";
@@ -23,7 +23,7 @@ jahiaComponent(
       node.isNodeType("jahiacom:accordionItem"),
     ).map((node) => ({
       key: node.getName(),
-      title: node.getPropertyAsString("jcr:title") ?? "",
+      title: node.getDisplayableName(),
       body: node.getPropertyAsString("body") ?? "",
     }));
 
@@ -44,9 +44,9 @@ jahiaComponent(
             })),
           })}
         </script>
-        <HydrateInBrowser child={Accordion}>
+        <Island component={Accordion}>
           <RenderChildren view="hidden.collapsible" />
-        </HydrateInBrowser>
+        </Island>
       </>
     );
   },
