@@ -17,3 +17,5 @@ This project uses resources from various authors, for its admin UI and other non
 - <a href="https://www.flaticon.com/free-icons/marketing" title="marketing icons">Marketing icons created by Freepik - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/manufacturing" title="manufacturing icons">Manufacturing icons created by Uniconlabs - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/css" title="css icons">Css icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/geography" title="geography icons">Geography icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/agreeement" title="agreeement icons">Agreeement icons created by Canticons - Flaticon</a>

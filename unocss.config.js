@@ -91,6 +91,7 @@ export default defineConfig({
       extraProperties: {
         "display": "inline-block",
         "vertical-align": "text-bottom",
+        "flex-shrink": "0",
       },
     }),
   ],

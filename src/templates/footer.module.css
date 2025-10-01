@@ -1,11 +1,6 @@
 .footer {
   composes: container from "../theme/theme.module.css";
   font-size: 0.875em;
-
-  hr {
-    border: 0;
-    border-top: 1px solid var(--jahia-border);
-  }
 }
 
 .padded {
@@ -24,7 +19,7 @@
 }
 
 /* Reduce the specificity of the selector to avoid conflict with CTA */
-:where(footer) a {
+:where(.footer) a {
   color: var(--jahia-neutral-400);
   text-decoration: inherit;
 }

@@ -1,0 +1,43 @@
+.card {
+  @apply _stack-4;
+
+  composes: item from "../../theme/theme.module.css";
+  padding: 1rem;
+}
+
+/** Cut off the first card in a container */
+:global(._container) > .card:first-of-type {
+  @apply _cut-before;
+}
+
+.card img {
+  height: 10rem;
+  padding: 2rem 4rem;
+}
+
+/* We need !important because icons have color: inherit */
+.silver {
+  color: var(--jahia-neutral-400) !important;
+}
+
+.gold {
+  color: var(--jahia-orange) !important;
+}
+
+.diamond {
+  color: var(--jahia-blue) !important;
+}
+
+.small {
+  font-size: 0.875em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.875em;
+}
