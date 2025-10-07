@@ -54,6 +54,12 @@ export default function NavBarClient({
     return () => document.removeEventListener("click", close);
   }, []);
 
+  // All scrolls outside the menu should close it
+  useEffect(() => {
+    document.addEventListener("scroll", close);
+    return () => document.removeEventListener("scroll", close);
+  }, []);
+
   // Pressing escape should also close the menu
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {

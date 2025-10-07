@@ -69,18 +69,16 @@ to fold the menu if it overflows. Let's go with a static value for now.
 .mobileMenu {
   position: fixed;
   inset-inline: 0;
-
-  /* Leave a small gap below, that, when clicked, closes the menu */
-  max-height: 80vh;
+  max-height: 80vh; /* Leave a small gap below, that, when clicked, closes the menu */
   padding: 0.5rem;
-  overflow: scroll;
+  overflow: auto;
   overscroll-behavior: contain;
-
-  /* Fading the color to avoid the compression effect of scaleY(0) */
-  color: transparent;
-
-  /* Copy properties of the nav to make the transition smoother */
-  background-color: color-mix(in srgb, var(--jahia-container-background) 75%, transparent);
+  color: transparent; /* Fade the color to avoid the compression effect of scaleY(0) */
+  background-color: /* Copy properties of the nav to make the transition smoother */ color-mix(
+    in srgb,
+    var(--jahia-container-background) 75%,
+    transparent
+  );
   backdrop-filter: blur(0.5rem);
   transform: translateY(0.5rem) /* The menu needs to be placed outside the padding of the nav */
     scaleY(0);
@@ -94,6 +92,7 @@ to fold the menu if it overflows. Let's go with a static value for now.
     color: inherit;
     background: var(--jahia-container-background);
     box-shadow: 0 0 2rem #0008; /* Transparent black so the shadow is visible on navy blue */
+    clip-path: inset(0 0 -2rem 0); /* Only show the shadow at the bottom */
     transform: translateY(0.5rem) scaleY(1);
   }
 
