@@ -93,6 +93,7 @@ to fold the menu if it overflows. Let's go with a static value for now.
   [data-open="true"] & {
     color: inherit;
     background: var(--jahia-container-background);
+    box-shadow: 0 0 2rem #0008; /* Transparent black so the shadow is visible on navy blue */
     transform: translateY(0.5rem) scaleY(1);
   }
 
