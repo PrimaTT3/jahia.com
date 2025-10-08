@@ -19,20 +19,28 @@ export interface Props {
   "logo": JCRNodeWrapper;
 }
 
-export const levels = {
-  silver: (
-    <>
-      <span className={clsx("i-ri:triangle-fill", classes.silver)} /> Silver Partner
-    </>
-  ),
-  gold: (
-    <>
-      <span className={clsx("i-ri:circle-fill", classes.gold)} /> Gold Partner
-    </>
-  ),
-  diamond: (
-    <>
-      <span className={clsx("i-ri:vip-diamond-fill", classes.diamond)} /> Diamond Partner
-    </>
-  ),
-};
+const getMessage = (key: string, locale: Locale, defaultValue: string): string =>
+  // @ts-expect-error This is a Java call
+  Java.type("org.jahia.utils.i18n.Messages").get("resources.jahiacom", key, locale, defaultValue);
+
+export const levels = (level: Props["certification"], locale: Locale) =>
+  ({
+    silver: (
+      <>
+        <span className={clsx("i-ri:triangle-fill", classes.silver)} />{" "}
+        {getMessage("jahiacom_partner.certification.silver", locale, "Silver Partner")}
+      </>
+    ),
+    gold: (
+      <>
+        <span className={clsx("i-ri:circle-fill", classes.gold)} />{" "}
+        {getMessage("jahiacom_partner.certification.gold", locale, "Gold Partner")}
+      </>
+    ),
+    diamond: (
+      <>
+        <span className={clsx("i-ri:vip-diamond-fill", classes.diamond)} />{" "}
+        {getMessage("jahiacom_partner.certification.diamond", locale, "Diamond Partner")}
+      </>
+    ),
+  })[level];

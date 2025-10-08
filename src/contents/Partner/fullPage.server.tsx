@@ -11,7 +11,7 @@ jahiaComponent(
   },
   (
     { "jcr:title": title, logo, certification, countries, description }: Props,
-    { currentNode, renderContext },
+    { currentNode, renderContext, currentResource },
   ) => (
     <section className={classes.container}>
       <header className={classes.header}>
@@ -39,7 +39,9 @@ jahiaComponent(
                 })
                 .join(", ")}
             </p>
-            <p className={clsx("_pack-1", classes.small)}>{levels[certification]}</p>
+            <p className={clsx("_pack-1", classes.small)}>
+              {levels(certification, currentResource.getLocale())}
+            </p>
           </footer>
         </article>
         <article className={classes.card}>

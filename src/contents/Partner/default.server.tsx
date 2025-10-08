@@ -8,10 +8,15 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:partner",
   },
-  ({ "jcr:title": title, certification, countries, description, logo }: Props, { currentNode }) => (
+  (
+    { "jcr:title": title, certification, countries, description, logo }: Props,
+    { currentNode, currentResource },
+  ) => (
     <article className={classes.card}>
       <img src={buildNodeUrl(logo)} alt={title} title={title} />
-      <p className={clsx("_pack-1", classes.small)}>{levels[certification]}</p>
+      <p className={clsx("_pack-1", classes.small)}>
+        {levels(certification, currentResource.getLocale())}
+      </p>
       <hr />
       <div
         className="_richtext"
