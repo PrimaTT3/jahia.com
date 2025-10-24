@@ -8,19 +8,21 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:logoCarousel",
   },
-  ({ logos, mode }: { logos: JCRNodeWrapper[]; mode: "color" | "mono" }) => (
+  ({ logos, mode }: { logos: Array<JCRNodeWrapper | null>; mode: "color" | "mono" }) => (
     <Island component={CarouselClient} props={{ mode, length: logos.length }}>
-      {logos.map((logo) => (
-        <div
-          key={logo.getName()}
-          className={classes.logo}
-          // @ts-expect-error CSS variable not supported in TS
-          style={{ "--logo": `url("${buildNodeUrl(logo)}")` }}
-        >
-          {/* Include the alt text directly in the logo */}
-          {logo.getDisplayableName()}
-        </div>
-      ))}
+      {logos
+        .filter((logo) => logo !== null)
+        .map((logo) => (
+          <div
+            key={logo.getName()}
+            className={classes.logo}
+            // @ts-expect-error CSS variable not supported in TS
+            style={{ "--logo": `url("${buildNodeUrl(logo)}")` }}
+          >
+            {/* Include the alt text directly in the logo */}
+            {logo.getDisplayableName()}
+          </div>
+        ))}
     </Island>
   ),
 );
