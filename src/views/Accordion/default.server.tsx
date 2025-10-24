@@ -19,13 +19,13 @@ jahiaComponent(
     }
 
     // Otherwise, fetch child nodes, retrieve their props and create an interactive component
-    const items = getChildNodes(currentNode, -1, 0, (node) =>
-      node.isNodeType("jahiacom:accordionItem"),
-    ).map((node) => ({
-      key: node.getName(),
-      title: node.getDisplayableName(),
-      body: node.getPropertyAsString("body") ?? "",
-    }));
+    const items = getChildNodes(currentNode, -1, 0, (node) => node.isNodeType("jahiacom:card")).map(
+      (node) => ({
+        key: node.getName(),
+        title: node.getDisplayableName(),
+        body: node.getPropertyAsString("body") ?? "",
+      }),
+    );
 
     return (
       <>
