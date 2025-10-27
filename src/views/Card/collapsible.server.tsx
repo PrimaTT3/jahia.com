@@ -17,7 +17,7 @@ jahiaComponent(
           {icon && (
             <img
               src={`${icon.getUrl()}?w=48&h=48`}
-              alt={icon.getDisplayableName()}
+              alt={icon.getPropertyAsString("jcr:title")}
               width="24"
               height="24"
             />

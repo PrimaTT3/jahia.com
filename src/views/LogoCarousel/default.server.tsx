@@ -20,7 +20,7 @@ jahiaComponent(
             style={{ "--logo": `url("${buildNodeUrl(logo)}")` }}
           >
             {/* Include the alt text directly in the logo */}
-            {logo.getDisplayableName()}
+            {logo.getPropertyAsString("jcr:title")}
           </div>
         ))}
     </Island>
