@@ -15,7 +15,7 @@
 // Themable containers (sections, heroes, etc.)
 [jahiacommix:container] > jahiacommix:rootComponent mixin
  - theme (string, choicelist[resourceBundle]) = 'day' mandatory autocreated < 'day', 'cloudy', 'night'
- - background (string, choicelist[resourceBundle]) < 'plusses', 'stripes', 'bottom-grid'
+ - background (string, choicelist[resourceBundle]) < 'plusses', 'stripes', 'matrix', 'bottom-grid'
 
 // Page building blocks
 [jahiacommix:component] > jmix:droppableContent, jmix:accessControllableContent mixin

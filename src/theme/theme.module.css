@@ -19,6 +19,10 @@
     background: var(--jahia-container-background) url("./bottom-grid.svg") center bottom repeat-x;
   }
 
+  &[data-bg="matrix"] {
+    background: var(--jahia-container-background) url("./matrix.svg") center / cover no-repeat;
+  }
+
   > * {
     width: 100%;
     max-width: var(--jahia-width);
