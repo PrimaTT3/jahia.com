@@ -13,7 +13,7 @@ jahiaComponent(
     { currentNode, currentResource },
   ) => (
     <article className={classes.card}>
-      <img src={buildNodeUrl(logo)} alt={title} title={title} />
+      {logo ? <img src={buildNodeUrl(logo)} alt={title} title={title} /> : <h4>{title}</h4>}
       <p className={clsx("_pack-1", classes.small)}>
         {levels(certification, currentResource.getLocale())}
       </p>

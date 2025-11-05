@@ -16,7 +16,7 @@ export interface Props {
   "certification": "silver" | "gold" | "diamond";
   "countries": string[];
   "description": string;
-  "logo": JCRNodeWrapper;
+  "logo"?: JCRNodeWrapper;
 }
 
 const getMessage = (key: string, locale: Locale, defaultValue: string): string =>

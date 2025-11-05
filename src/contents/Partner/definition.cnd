@@ -2,4 +2,4 @@
  - certification (string, choicelist[resourceBundle]) mandatory < silver, gold, diamond
  - countries (string, choicelist[country]) multiple mandatory
  - description (string, richtext) mandatory i18n
- - logo (weakreference, picker) mandatory < jmix:image
+ - logo (weakreference, picker) < jmix:image
