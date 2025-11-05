@@ -33,7 +33,10 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
 
     return {
       title: node.getDisplayableName(),
-      href: buildNodeUrl(target),
+      href: buildNodeUrl(target)
+        // Jahia only rewrites static HTML links in edit mode, fix the menu links
+        // to work in edit mode as well
+        .replace("/cms/edit/", "/cms/editframe/"),
       current: current === target.getIdentifier(),
     };
   });
