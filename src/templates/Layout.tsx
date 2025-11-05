@@ -22,8 +22,6 @@ interface Props {
   "openGraphImage"?: JCRNodeWrapper;
   "htmlTitle"?: string;
   "jsonLd"?: string[];
-  "noindex"?: boolean;
-  "nofollow"?: boolean;
   "stylesheets"?: JCRNodeWrapper[];
 }
 
@@ -39,8 +37,6 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
     "seoKeywords": keywords,
     "openGraphImage": openGraphImage,
     "jsonLd": jsonLd,
-    "noindex": noindex,
-    "nofollow": nofollow,
     "stylesheets": stylesheets,
   } = props;
 
@@ -88,8 +84,6 @@ export const Layout = ({ props, children }: { props: Props; children: ReactNode 
         {stylesheets?.filter(Boolean).map((stylesheet) => (
           <style key={stylesheet.getIdentifier()}>{stylesheet.getPropertyAsString("css")}</style>
         ))}
-        {noindex && <meta name="robots" content="noindex" />}
-        {nofollow && <meta name="robots" content="nofollow" />}
         {jsonLd?.map((content) => (
           <script type="application/ld+json" key={content}>
             {content}

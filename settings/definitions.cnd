@@ -34,8 +34,6 @@
 [jahiacommix:seoOptions] mixin extends=jnt:page extends=jmix:mainResource itemtype=seo
  - htmlTitle (string) i18n
  - jsonLd (string, textarea) i18n multiple
- - noindex (boolean) = false i18n
- - nofollow (boolean) = false i18n
 
 // Miscellaneous gadgets
 [jahiacommix:gadget] > jmix:droppableContent mixin
