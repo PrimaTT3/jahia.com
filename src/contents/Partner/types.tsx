@@ -10,6 +10,8 @@ export declare class Locale {
 
 // @ts-expect-error This is a Java class
 export const Locale = Java.type("java.util.Locale");
+// @ts-expect-error This is a Java call
+const Messages = Java.type("org.jahia.utils.i18n.Messages");
 
 export interface Props {
   "jcr:title": string;
@@ -20,8 +22,7 @@ export interface Props {
 }
 
 const getMessage = (key: string, locale: Locale, defaultValue: string): string =>
-  // @ts-expect-error This is a Java call
-  Java.type("org.jahia.utils.i18n.Messages").get("resources.jahiacom", key, locale, defaultValue);
+  Messages.get("resources.jahiacom", key, locale, defaultValue);
 
 export const levels = (level: Props["certification"], locale: Locale) =>
   ({
