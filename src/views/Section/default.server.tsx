@@ -42,7 +42,12 @@ jahiaComponent(
       CTAProps,
     { currentNode },
   ) => (
-    <section className={classes.container} data-theme={theme} data-bg={background}>
+    <section
+      id={currentNode.getName()}
+      className={classes.container}
+      data-theme={theme}
+      data-bg={background}
+    >
       {(title || subtitle) && (
         <header className={classes.header}>
           {title && <h2>{title}</h2>}
