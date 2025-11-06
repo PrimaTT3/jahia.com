@@ -13,11 +13,17 @@
 }
 
 .image {
-  height: 100%;
+  width: 100%;
   object-fit: cover;
 
   @container (width < 800px) {
     max-height: 15rem;
+  }
+
+  @container (width >= 800px) {
+    /* Prevent the image from making the testimony taller than the text */
+    height: 0;
+    min-height: 100%;
   }
 }
 
