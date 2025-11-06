@@ -10,8 +10,9 @@ jahiaComponent(
     nodeType: "jahiacom:testimony",
     name: "cover",
   },
-  ({ author, quote, image, theme, ...cta }: Props) => (
+  ({ author, quote, image, theme, ...cta }: Props, { currentNode }) => (
     <section
+      id={currentNode.getName()}
       className={clsx(classes.container, classes.cover)}
       data-theme={theme}
       style={{ backgroundImage: image && `url("${buildNodeUrl(image)}")` }}

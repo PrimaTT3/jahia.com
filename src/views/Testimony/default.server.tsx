@@ -10,8 +10,8 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:testimony",
   },
-  ({ author, quote, image, theme, ...cta }: Props) => (
-    <section className={clsx(classes.container)} data-theme={theme}>
+  ({ author, quote, image, theme, ...cta }: Props, { currentNode }) => (
+    <section id={currentNode.getName()} className={clsx(classes.container)} data-theme={theme}>
       <div className={classes.testimony}>
         {image && <Image image={image} className={classes.image} />}
         <div className={classes.text}>
