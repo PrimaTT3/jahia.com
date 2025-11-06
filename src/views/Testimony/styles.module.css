@@ -1,7 +1,7 @@
 .container {
   container-type: inline-size;
   color: var(--jahia-testimony-color);
-  background: var(--jahia-testimony-background) cover / center no-repeat;
+  background: var(--jahia-testimony-background) center / cover no-repeat;
 }
 
 .testimony {
