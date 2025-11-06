@@ -6,7 +6,6 @@
   display: grid;
   grid-template: 1fr / auto;
   gap: 1rem;
-  align-items: center;
 
   @container (width >= 800px) {
     grid-template: 1fr / 1fr 1fr;
