@@ -18,28 +18,33 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
       node.isNodeType("jnt:page") ||
       node.isNodeType("jnt:navMenuText") ||
       node.isNodeType("jnt:nodeLink"),
-  ).map((node) => {
-    // If the node is a menu entry, recursively get its children
-    if (node.isNodeType("jnt:navMenuText"))
+  )
+    .map((node) => {
+      // If the node is a menu entry, recursively get its children
+      if (node.isNodeType("jnt:navMenuText")) {
+        return {
+          title: node.getDisplayableName(),
+          children: getEntries(node, current),
+        };
+      }
+
+      // The node may be a page or a link to another node
+      const target = node.isNodeType("jnt:nodeLink")
+        ? node.getProperty("j:node").getValue().getNode()
+        : node;
+
+      if (!target) return null;
+
       return {
         title: node.getDisplayableName(),
-        children: getEntries(node, current),
+        href: buildNodeUrl(target)
+          // Jahia only rewrites static HTML links in edit mode, fix the menu links
+          // to work in edit mode as well
+          .replace("/cms/edit/", "/cms/editframe/"),
+        current: current === target.getIdentifier(),
       };
-
-    // The node may be a page or a link to another node
-    const target = node.isNodeType("jnt:nodeLink")
-      ? node.getProperty("j:node").getValue().getNode()
-      : node;
-
-    return {
-      title: node.getDisplayableName(),
-      href: buildNodeUrl(target)
-        // Jahia only rewrites static HTML links in edit mode, fix the menu links
-        // to work in edit mode as well
-        .replace("/cms/edit/", "/cms/editframe/"),
-      current: current === target.getIdentifier(),
-    };
-  });
+    })
+    .filter((entry) => entry !== null);
 
 export default function NavBar({
   site,
