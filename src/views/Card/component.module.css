@@ -3,6 +3,7 @@
 
   composes: item from "../../theme/theme.module.css";
   padding: 1.5rem;
+  backdrop-filter: blur(2px);
 }
 
 /** Cut off the first card in a container */
