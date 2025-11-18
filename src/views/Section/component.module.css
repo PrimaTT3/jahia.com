@@ -50,8 +50,9 @@
     &[data-columns="irregular-67-33"] {
       grid-template-columns: repeat(3, minmax(0, 1fr));
 
-      > :nth-child(4n),
-      > :nth-child(4n + 1) {
+      /* React inserts <link> elements when a component contains an image, skip them */
+      > :nth-child(4n of :not(link)),
+      > :nth-child(4n + 1 of :not(link)) {
         grid-column: span 2;
       }
     }
@@ -67,7 +68,7 @@
     &[data-columns="irregular-3-2"] {
       grid-template-columns: repeat(2, 1fr);
 
-      > :nth-child(3n + 1) {
+      > :nth-child(3n + 1 of :not(link)) {
         grid-column: span 2;
       }
     }
@@ -81,8 +82,8 @@
         grid-column: span 2;
       }
 
-      > :nth-child(5n + 1),
-      > :nth-child(5n + 2) {
+      > :nth-child(5n + 1 of :not(link)),
+      > :nth-child(5n + 2 of :not(link)) {
         grid-column: span 3;
       }
     }
