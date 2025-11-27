@@ -37,7 +37,8 @@
     transform: skewX(-30deg);
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     text-decoration: none;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -57,13 +58,15 @@
     color: var(--jahia-a11y-blue);
     background: transparent;
     border: 1px solid currentcolor;
+    transition: background var(--jahia-motion-timing);
 
     .line {
       background: currentcolor;
       opacity: 1;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background: color-mix(in srgb, currentcolor 10%, transparent);
     }
   }

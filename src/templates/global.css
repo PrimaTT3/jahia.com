@@ -22,7 +22,8 @@ body {
   color: var(--jahia-a11y-blue);
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     text-decoration: underline;
   }
 }

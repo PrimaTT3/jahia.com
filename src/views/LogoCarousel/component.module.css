@@ -44,10 +44,6 @@
   }
 }
 
-[data-scrolling="true"]:hover .carousel > * {
-  animation-play-state: paused;
-}
-
 /* Read https://antfu.me/posts/icons-in-pure-css to understand how it works. */
 .logo {
   display: flex;
