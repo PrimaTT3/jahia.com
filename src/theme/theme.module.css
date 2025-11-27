@@ -12,7 +12,8 @@
   }
 
   &[data-bg="stripes"] {
-    background: var(--jahia-container-background) url("./stripes.svg") center / cover no-repeat;
+    background: var(--jahia-container-background) url("./stripes.svg") center / cover no-repeat
+      fixed;
   }
 
   &[data-bg="bottom-grid"] {
