@@ -17,7 +17,9 @@
   background: var(--jahia-a11y-blue);
   border: 1px solid var(--jahia-a11y-blue);
   border-radius: 0.25rem;
-  transition: transform var(--jahia-motion-timing);
+  transition:
+    transform var(--jahia-motion-timing),
+    background var(--jahia-motion-timing);
 
   .line {
     width: 1px;
@@ -58,7 +60,6 @@
     color: var(--jahia-primary-color);
     background: transparent;
     border: 1px solid var(--jahia-a11y-blue);
-    transition: background var(--jahia-motion-timing);
 
     .line {
       background: var(--jahia-a11y-blue);
