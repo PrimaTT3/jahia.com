@@ -40,5 +40,5 @@
 
 .item {
   background: var(--jahia-background);
-  border: 1px solid var(--jahia-border);
+  border: var(--jahia-item-border-width, 1px) solid var(--jahia-border);
 }

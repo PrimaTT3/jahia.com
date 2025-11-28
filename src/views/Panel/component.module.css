@@ -22,14 +22,6 @@
   height: 100%;
 }
 
-.borderless {
-  /* Borderless is really just a bordered panel without borders */
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 100%;
-  background: var(--jahia-container-background);
-}
-
 .text {
   @apply _stack-4;
 
@@ -67,7 +59,8 @@
 }
 
 @container (width < 600px) {
-  .borderedText {
+  :global(._container) .borderedText {
+    /* Only apply the cut in a container-style parent (e.g. non-0-gapped section) */
     @apply _cut-after;
   }
 
@@ -103,12 +96,12 @@
   }
 
   .right .text,
-  .right .borderedText {
+  :global(._container) .right .borderedText {
     @apply _cut-before;
   }
 
   .left .text,
-  .left .borderedText {
+  :global(._container) .left .borderedText {
     @apply _cut-after;
   }
 

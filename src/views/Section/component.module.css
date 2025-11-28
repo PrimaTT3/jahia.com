@@ -33,11 +33,9 @@
     @apply _cut-both;
 
     --jahia-border: var(--jahia-inner-border);
+    --jahia-item-border-width: 0.5px; /* A double 0.5px border creates a 1px gap */
 
-    /* In this mode, we create a compact, bordered grid, faking a border using gap */
-    gap: 1px;
-    background-color: var(--jahia-border);
-    border: 1px solid var(--jahia-border);
+    border: 0.5px solid var(--jahia-border);
   }
 
   &[data-gap="1"] {

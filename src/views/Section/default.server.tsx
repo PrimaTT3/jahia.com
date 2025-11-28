@@ -90,7 +90,17 @@ jahiaComponent(
         </EditorHints>
       )}
       <div className={classes.wrapper} data-width={width}>
-        <div className={clsx(classes.grid, "_container")} data-columns={columns} data-gap={gap}>
+        <div
+          className={clsx(
+            classes.grid,
+            // _container means that children objects can have a cut corner under the right conditions
+            // (e.g. first or last in container)
+            // Never allow children to do cut corners if gap is 0, the corners are cut on the grid itself
+            { _container: gap !== "0" },
+          )}
+          data-columns={columns}
+          data-gap={gap}
+        >
           <RenderChildren />
         </div>
       </div>
