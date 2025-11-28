@@ -15,7 +15,7 @@ jahiaComponent(
       className={classes.hero}
       data-theme={theme}
       data-bg={background}
-      style={{ alignItems: "center" }}
+      style={{ alignItems: "center", padding: 0 }}
     >
       <div className={classes.wrapper}>
         <div className={clsx(classes.title, "_stack-8")}>

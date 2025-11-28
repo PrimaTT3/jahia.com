@@ -10,23 +10,23 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-block-end: -25vw; /* Clip the end of the hero for a cool effect */
-  margin-inline: 0; /* Remove the inherited margin-inline: auto */
+  gap: 0;
 
   @container (width >= 800px) {
     flex-direction: row;
+    gap: 1rem;
     align-items: center;
     margin-block-end: 0;
-    margin-inline-end: max(-25vw, -20rem); /* Clip horizontally on desktop */
   }
 }
 
 .title {
-  flex: 3;
+  flex: 1;
+  max-width: 100%;
+  padding: 3rem 2rem;
 
   @container (width >= 800px) {
-    margin-inline-start: max(-12.5vw, -10rem);
+    max-width: 50%;
   }
 }
 
@@ -55,8 +55,18 @@
 }
 
 .image {
-  flex: 4;
+  flex: 1;
   min-width: 0;
+  object-fit: cover;
+  object-position: center left;
+
+  @container (width >= 800px) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 50cqw;
+    height: 100%;
+  }
 }
 
 .compactImage {
