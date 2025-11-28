@@ -43,8 +43,8 @@ export default function NavBarClient({
 
   // Resizing the window should close the menu
   useEffect(() => {
-    // Breakpoint defined in NavBar.module.css (700px + 16px of padding)
-    const md = window.matchMedia("(min-width: 716px)");
+    // Breakpoint defined in NavBar.module.css (900px - 16px of padding)
+    const md = window.matchMedia("(min-width: 884px)");
     md.addEventListener("change", close);
     return () => md.removeEventListener("change", close);
   }, []);

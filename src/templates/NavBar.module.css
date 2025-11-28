@@ -3,7 +3,7 @@ This value needs to be updated manually when the menu grows or shrinks.
 While this value could be computed on page load, it would cause a layout shift
 to fold the menu if it overflows. Let's go with a static value for now.
 */
-@value breakpoint: 700px;
+@value breakpoint: 900px;
 
 .nav {
   position: sticky;
