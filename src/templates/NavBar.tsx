@@ -30,7 +30,7 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
 
       // The node may be a page or a link to another node
       const target = node.isNodeType("jnt:nodeLink")
-        ? node.getProperty("j:node").getValue().getNode()
+        ? node.hasProperty("j:node") && node.getProperty("j:node")?.getValue()?.getNode()
         : node;
 
       if (!target) return null;
