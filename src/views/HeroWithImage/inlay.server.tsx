@@ -17,7 +17,7 @@ jahiaComponent(
         style={{ "--img": image && `url(${buildNodeUrl(image)})` }}
       >
         <h2>{title}</h2>
-        <div className="_stack-8">
+        <div className="_stack-4">
           {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
           {cta.ctaType !== "none" && (
             <p>

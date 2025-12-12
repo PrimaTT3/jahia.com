@@ -1,5 +1,7 @@
 .hero {
   composes: container from "../../theme/theme.module.css";
+  justify-content: center;
+  min-height: 30rem;
   contain: paint;
 }
 
@@ -121,14 +123,28 @@
 
   @container (width >= 800px) {
     grid-template-columns: 1fr 1fr;
-    align-items: center;
+    align-items: baseline;
     padding-block: 6rem;
     background: var(--img) center / contain no-repeat;
+    animation: inlay-slide linear;
+    animation-timeline: view();
   }
 
   h2 {
     /* Copy h1 style, but h2 for semantics */
     font-size: 3rem;
     line-height: 1.25;
+  }
+}
+
+@keyframes inlay-slide {
+  0% {
+    background-position: 55% 50%;
+    opacity: 0.3;
+  }
+
+  50% {
+    background-position: 50% 50%;
+    opacity: 1;
   }
 }
