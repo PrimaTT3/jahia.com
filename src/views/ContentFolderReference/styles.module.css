@@ -1,3 +1,9 @@
+:global(.hideWhenSmall) {
+  @container (600px <= width) {
+    display: none;
+  }
+}
+
 .grid {
   display: flex;
   flex-direction: column;
@@ -13,6 +19,10 @@
     > :nth-child(9n + 1 of :not(link)) {
       grid-row: span 2;
       grid-column: span 2;
+
+      :global(.hideWhenSmall) {
+        display: block;
+      }
     }
   }
 
@@ -27,6 +37,10 @@
     > :nth-child(10n of :not(link)) {
       grid-row: span 2;
       grid-column: span 2;
+
+      :global(.hideWhenSmall) {
+        display: block;
+      }
     }
 
     /* Manually position items 8 and 9 to create a gap for item 10 */

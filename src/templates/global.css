@@ -52,10 +52,12 @@ h1 {
 
 h2 {
   font-size: 2em;
+  line-height: 1.25;
 }
 
 h3 {
   font-size: 1.5em;
+  line-height: 1.25;
 }
 
 h4 {
