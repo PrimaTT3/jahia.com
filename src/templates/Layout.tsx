@@ -101,6 +101,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ))}
       </head>
       <body>
+        {site.hasProperty("gtmId") && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${site.getPropertyAsString("gtmId")}`}
+              style={{ display: "none" }}
+            />
+          </noscript>
+        )}
         <EditorHints
           title={"Page SEO checklist:"}
           hints={() => ({
