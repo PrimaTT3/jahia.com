@@ -24,6 +24,16 @@
     background: var(--jahia-container-background) url("./matrix.svg") center / cover no-repeat;
   }
 
+  &[data-bg="aura-top"] {
+    background: var(--jahia-container-background) url("./aura-top.svg") center bottom / 100% auto
+      no-repeat;
+  }
+
+  &[data-bg="aura-bottom"] {
+    background: var(--jahia-container-background) url("./aura-bottom.svg") center top / 100% auto
+      no-repeat;
+  }
+
   > * {
     width: 100%;
     max-width: var(--jahia-width);
