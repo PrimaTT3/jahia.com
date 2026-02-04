@@ -30,6 +30,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/setup-node@v6
+        with:
+          node-version: 24
       - uses: browser-actions/setup-chrome@v2
       - run: |
           npx lighthouse@13 '${{ secrets.JAHIA_HOST }}/sites/jahiacom/home.html' \
