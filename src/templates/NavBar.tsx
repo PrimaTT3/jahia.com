@@ -17,7 +17,8 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
     (node) =>
       node.isNodeType("jnt:page") ||
       node.isNodeType("jnt:navMenuText") ||
-      node.isNodeType("jnt:nodeLink"),
+      node.isNodeType("jnt:nodeLink") ||
+      node.isNodeType("jnt:externalLink"),
   )
     .map((node) => {
       // If the node is a menu entry, recursively get its children
@@ -25,6 +26,14 @@ const getEntries = (root: JCRNodeWrapper, current: string): Entry[] =>
         return {
           title: node.getDisplayableName(),
           children: getEntries(node, current),
+        };
+      }
+
+      if (node.isNodeType("jnt:externalLink")) {
+        return {
+          title: node.getDisplayableName(),
+          href: node.hasProperty("j:url") ? node.getPropertyAsString("j:url") : "",
+          current: false,
         };
       }
 
