@@ -26,7 +26,7 @@ jahiaComponent(
         {categories?.map(
           (category) =>
             category && (
-              <span>
+              <span key={category.getIdentifier()}>
                 <Render node={category} view="title" />
               </span>
             ),
