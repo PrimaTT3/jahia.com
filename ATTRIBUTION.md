@@ -20,3 +20,4 @@ This project uses resources from various authors, for its admin UI and other non
 - <a href="https://www.flaticon.com/free-icons/geography" title="geography icons">Geography icons created by Freepik - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/agreeement" title="agreeement icons">Agreeement icons created by Canticons - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/quote" title="quote icons">Quote icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/nine" title="nine icons">Nine icons created by Freepik - Flaticon</a>
