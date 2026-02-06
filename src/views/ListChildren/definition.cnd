@@ -2,3 +2,5 @@
  - parent (weakreference) mandatory < jnt:page, jnt:navMenuText, jnt:contentFolder
  - nodeType (string, choicelist[nodetypes=jmix:mainResource])
  - categoryFilters (weakreference) multiple < jnt:category
+ - emptyState (string, richtext) mandatory i18n
+ - clearButtonLabel (string) mandatory i18n

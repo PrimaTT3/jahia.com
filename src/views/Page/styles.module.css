@@ -1,0 +1,31 @@
+.card {
+  @apply _stack-2;
+
+  composes: item from "../../theme/theme.module.css";
+  position: relative;
+  padding: 1.5rem;
+
+  h3 a {
+    color: inherit;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+    }
+  }
+}
+
+.categories {
+  @apply _row-2;
+
+  row-gap: 0;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--jahia-a11y-blue);
+
+  span + span::before {
+    margin-right: 0.5rem;
+    content: "·";
+  }
+}

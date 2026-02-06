@@ -1,0 +1,22 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.emptyState {
+  @apply _stack-4;
+
+  display: block;
+  justify-content: center;
+  text-align: center;
+
+  button {
+    margin-top: 1rem;
+  }
+}
+
+/* Hide the empty state when at least one child is visible */
+.grid:has(> *:not([hidden])) + .emptyState {
+  display: none;
+}

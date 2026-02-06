@@ -1,11 +1,14 @@
 import { Island, jahiaComponent, Render, useJCRQuery } from "@jahia/javascript-modules-library";
 import type { JCRNodeWrapper } from "org.jahia.services.content";
 import Filter from "./Filter.client.jsx";
+import classes from "./styles.module.css";
 
 interface Props {
   parent?: JCRNodeWrapper;
   nodeType?: string;
   categoryFilters?: Array<JCRNodeWrapper | null>;
+  emptyState?: string;
+  clearButtonLabel?: string;
 }
 
 jahiaComponent(
@@ -13,7 +16,10 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:listChildren",
   },
-  ({ parent, nodeType = "jnt:page", categoryFilters }: Props, { renderContext }) => {
+  (
+    { parent, nodeType = "jnt:page", categoryFilters, emptyState, clearButtonLabel }: Props,
+    { renderContext },
+  ) => {
     if (!parent) return null;
 
     // Retrieve all direct and indirect children objects of `parent`
@@ -21,6 +27,7 @@ jahiaComponent(
       query: `
         SELECT * FROM [${nodeType}]
         WHERE ISDESCENDANTNODE(${JSON.stringify(parent.getPath())})
+        ORDER BY [jcr:created] DESC
       `,
     });
 
@@ -65,21 +72,24 @@ jahiaComponent(
       }
     }
 
-    const params = renderContext.getRequest().getParameterMap();
+    // If the query parameters contain filters, extract them and apply them on the server
+    const requestParams = renderContext.getRequest().getParameterMap();
+    const params = new Map(
+      [...filters]
+        .map<
+          [string, string | null]
+        >(([filter]) => [filter.getName(), requestParams.containsKey(filter.getName()) ? requestParams.get(filter.getName())[0] : null])
+        .filter((param): param is [string, string] => param[1] !== null && param[1] !== ""),
+    );
 
     return (
       <Island component={Filter}>
         {filters.size > 0 && (
-          <div>
-            Filter:
+          <div className="_center-4">
             {[...filters].map(([categoryPicker, categoryList]) => {
               const name = categoryPicker.getName();
               return (
-                <select
-                  key={categoryPicker.getIdentifier()}
-                  name={name}
-                  value={params.containsKey(name) ? params.get(name)[0] : ""}
-                >
+                <select key={categoryPicker.getIdentifier()} name={name} value={params.get(name)}>
                   <option value="">{categoryPicker.getDisplayableName()}</option>
                   {categoryList.map((category) => (
                     <option key={category.getIdentifier()} value={category.getName()}>
@@ -89,29 +99,42 @@ jahiaComponent(
                 </select>
               );
             })}
-            <button type="reset">Clear</button>
+            <noscript>
+              <input type="submit" style={{ marginTop: 0 }} />
+            </noscript>
           </div>
         )}
 
-        {childrenAndCategories.map(({ child, categories }) => {
-          return (
+        <div className={classes.grid}>
+          {childrenAndCategories.map(({ child, categories }) => (
             <div
+              style={{ display: "flex" }}
               key={child.getIdentifier()}
               data-categories={[...categories]
                 .filter((category) => reverseCategoryMap.has(category))
                 .map((category) => `${reverseCategoryMap.get(category)}=${category}`)
                 .join("&")}
               hidden={
-                ![...filters].every(([category]) => {
-                  const name = category.getName();
-                  return !params.containsKey(name) || categories.has(params.get(name)![0]);
-                })
+                ![...filters].every(
+                  ([category]) =>
+                    !params.has(category.getName()) ||
+                    categories.has(params.get(category.getName())!),
+                )
               }
             >
               <Render node={child} />
             </div>
-          );
-        })}
+          ))}
+        </div>
+
+        <div className={classes.emptyState}>
+          {emptyState && (
+            <div className="_richtext" dangerouslySetInnerHTML={{ __html: emptyState }} />
+          )}
+          <p>
+            <button type="reset">{clearButtonLabel}</button>
+          </p>
+        </div>
       </Island>
     );
   },

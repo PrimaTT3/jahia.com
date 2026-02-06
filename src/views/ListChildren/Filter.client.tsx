@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 export default function Filter({ children }: { children: ReactNode }) {
   return (
     <form
+      className="_stack-8"
       onChange={(event) => {
         const filters = [];
         for (const select of event.currentTarget.querySelectorAll("select")) {
@@ -22,12 +23,11 @@ export default function Filter({ children }: { children: ReactNode }) {
         );
       }}
       onReset={(event) => {
-        for (const select of event.currentTarget.querySelectorAll("select")) {
-          select.value = "";
-        }
-        for (const child of event.currentTarget.querySelectorAll("[data-categories]")) {
+        for (const select of event.currentTarget.querySelectorAll("select")) select.value = "";
+
+        for (const child of event.currentTarget.querySelectorAll("[data-categories]"))
           child.removeAttribute("hidden");
-        }
+
         history.replaceState(null, "", location.pathname);
         event.preventDefault();
       }}
