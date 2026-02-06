@@ -26,19 +26,19 @@ jahiaComponent(
 
     // Retrieve all categories of all children
     const allUsedCategories = new Set<string>();
-    const childrenWithCategories: Array<{ child: JCRNodeWrapper; categories: string[] }> = [];
+    const childrenAndCategories: Array<{ child: JCRNodeWrapper; categories: Set<string> }> = [];
     for (const child of children) {
       if (!child.hasProperty("j:defaultCategory")) {
-        childrenWithCategories.push({ child, categories: [] });
+        childrenAndCategories.push({ child, categories: new Set() });
         continue;
       }
-      const categories = [];
+      const categories = new Set<string>();
       for (const category of child.getProperty("j:defaultCategory").getValues()) {
         const name = category.getNode().getName();
         allUsedCategories.add(name);
-        categories.push(name);
+        categories.add(name);
       }
-      childrenWithCategories.push({ child, categories });
+      childrenAndCategories.push({ child, categories });
     }
 
     // Intersect categories from `categoryFilters` and the ones actually used by the children
@@ -89,27 +89,21 @@ jahiaComponent(
                 </select>
               );
             })}
+            <button type="reset">Clear</button>
           </div>
         )}
 
-        {childrenWithCategories.map(({ child, categories }) => {
-          const mappedCategories = new Map<string, string>(
-            categories
-              .filter((category) => reverseCategoryMap.has(category))
-              .map((category) => [reverseCategoryMap.get(category)!, category]),
-          );
+        {childrenAndCategories.map(({ child, categories }) => {
           return (
             <div
               key={child.getIdentifier()}
-              data-categories={[...mappedCategories]
-                .map(([parent, category]) => `${parent}=${category}`)
+              data-categories={[...categories]
+                .map((category) => `${reverseCategoryMap.get(category)}=${category}`)
                 .join("&")}
               hidden={
                 ![...filters].every(([category]) => {
                   const name = category.getName();
-                  return (
-                    !params.containsKey(name) || params.get(name)![0] === mappedCategories.get(name)
-                  );
+                  return !params.containsKey(name) || categories.has(params.get(name)![0]);
                 })
               }
             >
