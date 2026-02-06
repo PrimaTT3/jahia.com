@@ -131,7 +131,7 @@ jahiaComponent(
         {icon && <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "4rem" }} />}
       </a>
     ) : icon ? (
-      <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "4rem" }} />
+      <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "7rem" }} />
     ) : (
       <del>{title}</del>
     );
