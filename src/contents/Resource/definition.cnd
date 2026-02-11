@@ -1,3 +1,0 @@
-[jahiacom:resource] > jnt:content, jahiacommix:content, mix:title, jmix:visibleInContentTree, jmix:mainResource
- - description (string, richtext) mandatory i18n
- - form (string, richtext) mandatory i18n

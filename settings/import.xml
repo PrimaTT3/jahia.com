@@ -29,17 +29,6 @@
           jcr:primaryType="jnt:translation"
           jcr:title="Contents"
           />
-        <resources
-          jcr:primaryType="jnt:contentFolder"
-          jcr:mixinTypes="jmix:contributeMode"
-          j:contributeTypes="jahiacom:resourceCategory"
-          >
-          <j:translation_en
-            jcr:language="en"
-            jcr:primaryType="jnt:translation"
-            jcr:title="Resources"
-            />
-        </resources>
         <stylesheets
           jcr:primaryType="jnt:contentFolder"
           jcr:mixinTypes="jmix:contributeMode"
