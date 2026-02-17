@@ -58,17 +58,6 @@ export const Layout = ({
   return (
     <html lang={lang}>
       <head>
-        <script>{`(window.dataLayer??=[]).push(${JSON.stringify({
-          page_type: pageType ?? props.pageType,
-          page_tags: props["j:tagList"],
-          cluster_name: props["j:defaultCategory"]?.map((category) =>
-            category?.getPath().slice("/sites/systemsite/categories/".length),
-          ),
-          content_language: currentResource.getLocale().toString(),
-          publish_date /* [sic] */: props["j:lastPublished"],
-          creation_date: props["jcr:created"],
-          last_modified_date: props["jcr:lastModified"],
-        })})`}</script>
         {site.hasProperty("gtmId") && (
           <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -130,7 +119,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           /* Because WEM does not support registering callbacks before the lib is loaded, we place this here */
           `window.digitalDataOverrides?.push(${JSON.stringify({
             wemInitConfig: { requiredProfileProperties: ["hubspot_visitor_type"] },
-          })});window.wem?._registerCallback(()=>{window.dataLayer.push({user_id:cxs.profileId,visitor_type:cxs.profileProperties?.hubspot_visitor_type})})`
+          })});window.wem?._registerCallback(()=>{window.dataLayer.push({user_id:cxs.profileId,visitor_type:cxs.profileProperties?.hubspot_visitor_type,...${JSON.stringify(
+            {
+              event: "user_data_ready", // Tell GTM we're ready for what's next
+              page_type: pageType ?? props.pageType,
+              page_tags: props["j:tagList"],
+              cluster_name: props["j:defaultCategory"]?.map((category) =>
+                category?.getPath().slice("/sites/systemsite/categories/".length),
+              ),
+              content_language: currentResource.getLocale().toString(),
+              publish_date /* [sic] */: props["j:lastPublished"],
+              creation_date: props["jcr:created"],
+              last_modified_date: props["jcr:lastModified"],
+            },
+          )}})})`
         }</script>
         {site.hasProperty("gtmId") && (
           <noscript>
