@@ -8,7 +8,7 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:card",
   },
-  ({ "jcr:title": title, body, icon, ...cta }: Props) => (
+  ({ "jcr:title": title, body, icon, ...cta }: Props, { currentNode }) => (
     <article className={classes.card}>
       {icon && (
         <img
@@ -29,7 +29,7 @@ jahiaComponent(
       )}
       {cta.ctaType !== "none" && (
         <p style={{ marginTop: "1rem" }}>
-          <MixinCTA cta={cta} />
+          <MixinCTA cta={cta} location="card" name={currentNode.getName()} />
         </p>
       )}
     </article>

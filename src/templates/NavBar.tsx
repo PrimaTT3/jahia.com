@@ -92,6 +92,11 @@ export default function NavBar({
       <a
         href={buildNodeUrl(root)}
         aria-current={current.getIdentifier() === root.getIdentifier() ? "page" : undefined}
+        data-element-url={buildNodeUrl(root)}
+        data-element-type="image"
+        data-element-text="Jahia Logo"
+        data-element-location="header"
+        data-element-name={`nav/logo`}
       >
         <img src={buildModuleFileUrl(jahia)} alt="Jahia" width="90" height="40" />
       </a>

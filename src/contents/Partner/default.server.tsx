@@ -34,7 +34,15 @@ jahiaComponent(
             .join(", ")}
         </p>
         <p>
-          <a href={buildNodeUrl(currentNode)} className="_pack-1">
+          <a
+            href={buildNodeUrl(currentNode)}
+            className="_pack-1"
+            data-element-url={buildNodeUrl(currentNode)}
+            data-element-type="link"
+            data-element-text="Contact them"
+            data-element-location="partners_section"
+            data-element-name={currentNode.getName()}
+          >
             Contact them
             <span className="i-ri:mail-line" />
           </a>

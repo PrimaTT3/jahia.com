@@ -28,7 +28,7 @@ jahiaComponent(
           <p className={classes.big}>{title || "(title missing!)"}</p>
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="footer" name={currentNode.getName()} />
             </p>
           )}
         </div>
@@ -44,7 +44,15 @@ jahiaComponent(
             {bottomLinks
               ?.filter((node) => node !== null)
               .map((node) => (
-                <a href={buildNodeUrl(node)} key={node.getIdentifier()}>
+                <a
+                  href={buildNodeUrl(node)}
+                  key={node.getIdentifier()}
+                  data-element-url={buildNodeUrl(currentNode)}
+                  data-element-type="link"
+                  data-element-text={node.getPropertyAsString("jcr:title")}
+                  data-element-location="footer"
+                  data-element-name={node.getName()}
+                >
                   {node.getPropertyAsString("jcr:title")}
                 </a>
               )) || <em>Add links here!</em>}
@@ -84,7 +92,15 @@ jahiaComponent(
       {links
         ?.filter((node) => node !== null)
         .map((node) => (
-          <a href={buildNodeUrl(node)} key={node.getIdentifier()}>
+          <a
+            href={buildNodeUrl(node)}
+            key={node.getIdentifier()}
+            data-element-url={buildNodeUrl(node)}
+            data-element-type="link"
+            data-element-text={node.getPropertyAsString("jcr:title")}
+            data-element-location="footer"
+            data-element-name={node.getName()}
+          >
             {node.getPropertyAsString("jcr:title")}
           </a>
         ))}
@@ -115,7 +131,7 @@ jahiaComponent(
       icon,
       href,
     }: { "jcr:title"?: string; "icon"?: JCRNodeWrapper; "href"?: string },
-    { renderContext },
+    { renderContext, currentNode },
   ) => {
     if (renderContext.isEditMode()) {
       return (
@@ -127,7 +143,17 @@ jahiaComponent(
     }
 
     return href ? (
-      <a href={href} target="_blank" rel="noopener noreferrer" title={title}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={title}
+        data-element-url={href}
+        data-element-type="image"
+        data-element-text={`${title} image`}
+        data-element-location="footer"
+        data-element-name={currentNode.getName()}
+      >
         {icon && <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "4rem" }} />}
       </a>
     ) : icon ? (

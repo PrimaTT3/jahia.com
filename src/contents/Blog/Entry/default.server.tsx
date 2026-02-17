@@ -18,7 +18,16 @@ jahiaComponent(
         </div>
         <div className="_stack-1" style={{ padding: "1rem" }}>
           <h3>
-            <a href={buildNodeUrl(currentNode)}>{title || "no title"}</a>
+            <a
+              href={buildNodeUrl(currentNode)}
+              data-element-url={buildNodeUrl(currentNode)}
+              data-element-type="link"
+              data-element-text={title || "no title"}
+              data-element-location="blog_section"
+              data-element-name={currentNode.getName()}
+            >
+              {title || "no title"}
+            </a>
           </h3>
 
           <div className={classes.meta}>

@@ -11,7 +11,7 @@ jahiaComponent(
     nodeType: "jahiacom:heroWithImage",
     name: "compact",
   },
-  ({ theme, "jcr:title": title, subtitle, image, background, ...cta }: Props) => (
+  ({ theme, "jcr:title": title, subtitle, image, background, ...cta }: Props, { currentNode }) => (
     <header className={classes.hero} data-theme={theme} data-bg={background}>
       <div className={classes.grid}>
         <div className={clsx(classes.compact, "_stack-4")}>
@@ -19,7 +19,7 @@ jahiaComponent(
           {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="hero_banner" name={currentNode.getName()} />
             </p>
           )}
         </div>

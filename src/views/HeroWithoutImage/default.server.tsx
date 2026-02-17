@@ -8,7 +8,7 @@ export const HeroWithoutImage = jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:heroWithoutImage",
   },
-  ({ theme, "jcr:title": title, subtitle, background, ...cta }: Props) => (
+  ({ theme, "jcr:title": title, subtitle, background, ...cta }: Props, { currentNode }) => (
     <header className={classes.hero} data-theme={theme} data-bg={background}>
       <div className={classes.grid}>
         {title && <h1>{title}</h1>}
@@ -16,7 +16,7 @@ export const HeroWithoutImage = jahiaComponent(
           {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="hero_banner" name={currentNode.getName()} />
             </p>
           )}
         </div>

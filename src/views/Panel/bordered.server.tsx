@@ -17,7 +17,7 @@ jahiaComponent(
     nodeType: "jahiacom:panel",
     name: "bordered",
   },
-  ({ "jcr:title": title, body, image, swap, ...cta }: Props) => (
+  ({ "jcr:title": title, body, image, swap, ...cta }: Props, { currentNode }) => (
     <article className={classes.container}>
       <div className={clsx(classes.bordered, swap ? classes.left : classes.right)}>
         {image && <Image image={image} className={classes.borderedImage} />}
@@ -26,7 +26,7 @@ jahiaComponent(
           {body && <div className="_richtext" dangerouslySetInnerHTML={{ __html: body }}></div>}
           {cta.ctaType !== "none" && (
             <p style={{ marginTop: "1rem" }}>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="panel" name={currentNode.getName()} />
             </p>
           )}
         </div>

@@ -17,7 +17,7 @@ jahiaComponent(
     nodeType: "jahiacom:panel",
     priority: 1,
   },
-  ({ "jcr:title": title, body, image, swap, ...cta }: Props) => (
+  ({ "jcr:title": title, body, image, swap, ...cta }: Props, { currentNode }) => (
     <article className={classes.container}>
       <div className={clsx(classes.panel, swap ? classes.left : classes.right)}>
         {image && (
@@ -36,7 +36,7 @@ jahiaComponent(
           )}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="panel" name={currentNode.getName()} />
             </p>
           )}
         </div>

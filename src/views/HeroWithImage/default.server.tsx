@@ -10,7 +10,7 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:heroWithImage",
   },
-  ({ "jcr:title": title, subtitle, image, theme, background, ...cta }: Props) => (
+  ({ "jcr:title": title, subtitle, image, theme, background, ...cta }: Props, { currentNode }) => (
     <header
       className={classes.hero}
       data-theme={theme}
@@ -23,7 +23,7 @@ jahiaComponent(
           {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="hero_banner" name={currentNode.getName()} />
             </p>
           )}
         </div>

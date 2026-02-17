@@ -9,7 +9,7 @@ jahiaComponent(
     nodeType: "jahiacom:heroWithImage",
     name: "inlay",
   },
-  ({ "jcr:title": title, subtitle, image, theme, background, ...cta }: Props) => (
+  ({ "jcr:title": title, subtitle, image, theme, background, ...cta }: Props, { currentNode }) => (
     <section className={classes.hero} data-theme={theme} data-bg={background}>
       <div
         className={classes.inlay}
@@ -21,7 +21,7 @@ jahiaComponent(
           {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="inlay_banner" name={currentNode.getName()} />
             </p>
           )}
         </div>

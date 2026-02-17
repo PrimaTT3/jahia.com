@@ -92,6 +92,11 @@ export default function NavBarClient({
                   onMouseMove={() => {
                     setOpen(false);
                   }}
+                  data-element-url={entry.href}
+                  data-element-type="link"
+                  data-element-text={entry.title}
+                  data-element-location="header"
+                  data-element-name={`nav/${entry.title}`}
                 >
                   {entry.title}
                 </a>
@@ -119,12 +124,16 @@ export default function NavBarClient({
               ),
             )}
             {secondaryCTA && (
-              <CTA href={secondaryCTA.href} icon secondary>
+              <CTA href={secondaryCTA.href} icon secondary location="header" name="nav-secondary">
                 {secondaryCTA.label}
               </CTA>
             )}
           </div>
-          {primaryCTA && <CTA href={primaryCTA.href}>{primaryCTA.label}</CTA>}
+          {primaryCTA && (
+            <CTA href={primaryCTA.href} location="header" name="nav-primary">
+              {primaryCTA.label}
+            </CTA>
+          )}
 
           <button
             type="button"
@@ -149,7 +158,16 @@ export default function NavBarClient({
       >
         {entries.map((entry) =>
           "href" in entry ? (
-            <a key={entry.href} href={entry.href} aria-current={entry.current ? "page" : undefined}>
+            <a
+              key={entry.href}
+              href={entry.href}
+              aria-current={entry.current ? "page" : undefined}
+              data-element-url={entry.href}
+              data-element-type="link"
+              data-element-text={entry.title}
+              data-element-location="header"
+              data-element-name={`mobile-nav/${entry.title}`}
+            >
               {entry.title}
             </a>
           ) : (
@@ -180,7 +198,15 @@ export default function NavBarClient({
                 {entry.children.map((entry) =>
                   "href" in entry ? (
                     <li key={entry.href}>
-                      <a href={entry.href} aria-current={entry.current ? "page" : undefined}>
+                      <a
+                        href={entry.href}
+                        aria-current={entry.current ? "page" : undefined}
+                        data-element-url={entry.href}
+                        data-element-type="link"
+                        data-element-text={entry.title}
+                        data-element-location="header"
+                        data-element-name={`mobile-nav/${entry.title}`}
+                      >
                         {entry.title}
                       </a>
                     </li>
@@ -195,6 +221,11 @@ export default function NavBarClient({
                                 <a
                                   href={entry.href}
                                   aria-current={entry.current ? "page" : undefined}
+                                  data-element-url={entry.href}
+                                  data-element-type="link"
+                                  data-element-text={entry.title}
+                                  data-element-location="header"
+                                  data-element-name={`mobile-nav/${entry.title}`}
                                 >
                                   {entry.title}
                                 </a>
@@ -211,7 +242,13 @@ export default function NavBarClient({
         )}
         {secondaryCTA && (
           <div style={{ padding: ".5rem" }}>
-            <CTA href={secondaryCTA.href} icon secondary>
+            <CTA
+              href={secondaryCTA.href}
+              icon
+              secondary
+              location="header"
+              name="mobile-nav-secondary"
+            >
               {secondaryCTA.label}
             </CTA>
           </div>
@@ -244,7 +281,15 @@ export default function NavBarClient({
           {subentries?.map((entry) =>
             "href" in entry ? (
               <li key={entry.href}>
-                <a href={entry.href} aria-current={entry.current ? "page" : undefined}>
+                <a
+                  href={entry.href}
+                  aria-current={entry.current ? "page" : undefined}
+                  data-element-url={entry.href}
+                  data-element-type="link"
+                  data-element-text={entry.title}
+                  data-element-location="header"
+                  data-element-name={`nav/${entry.title}`}
+                >
                   {entry.title}
                 </a>
               </li>
@@ -256,7 +301,15 @@ export default function NavBarClient({
                     (entry) =>
                       "href" in entry && (
                         <li key={entry.href}>
-                          <a href={entry.href} aria-current={entry.current ? "page" : undefined}>
+                          <a
+                            href={entry.href}
+                            aria-current={entry.current ? "page" : undefined}
+                            data-element-url={entry.href}
+                            data-element-type="link"
+                            data-element-text={entry.title}
+                            data-element-location="header"
+                            data-element-name={`nav/${entry.title}`}
+                          >
                             {entry.title}
                           </a>
                         </li>

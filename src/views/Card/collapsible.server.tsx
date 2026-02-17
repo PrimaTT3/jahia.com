@@ -10,7 +10,7 @@ jahiaComponent(
     // Prefix the view name with "hidden." to prevent manual selection in the UI
     name: "hidden.collapsible",
   },
-  ({ "jcr:title": title, body, icon, ...cta }: Props, { renderContext }) => (
+  ({ "jcr:title": title, body, icon, ...cta }: Props, { renderContext, currentNode }) => (
     <article className={classes.collapsible} aria-expanded={renderContext.isEditMode()}>
       <h3 className={classes.header}>
         <button type="button" className={classes.toggle}>
@@ -33,7 +33,7 @@ jahiaComponent(
           {body && <div className="_richtext" dangerouslySetInnerHTML={{ __html: body }} />}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="faq_section" name={currentNode.getName()} />
             </p>
           )}
         </div>

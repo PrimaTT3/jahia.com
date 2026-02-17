@@ -19,7 +19,15 @@ type MixinCTAProps =
       "ctaVariant"?: "primary" | "secondary";
     };
 
-export const MixinCTA = ({ cta }: { cta: MixinCTAProps }) => (
+export const MixinCTA = ({
+  cta,
+  location,
+  name,
+}: {
+  cta: MixinCTAProps;
+  location: string;
+  name: string;
+}) => (
   <CTA
     href={
       cta.ctaType === "internal"
@@ -29,6 +37,8 @@ export const MixinCTA = ({ cta }: { cta: MixinCTAProps }) => (
     title={cta.ctaType === "external" ? cta["j:linkTitle"] : undefined}
     icon
     secondary={cta.ctaVariant === "secondary"}
+    location={location}
+    name={name}
   >
     {cta.ctaLabel ||
       (cta.ctaType === "internal"

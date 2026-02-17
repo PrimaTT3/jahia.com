@@ -21,7 +21,7 @@ jahiaComponent(
           {author && <p>— {author}</p>}
           {cta.ctaType !== "none" && (
             <p>
-              <MixinCTA cta={cta} />
+              <MixinCTA cta={cta} location="testimonials_section" name={currentNode.getName()} />
             </p>
           )}
         </div>

@@ -10,7 +10,7 @@ export const HeroWithoutImage = jahiaComponent(
     nodeType: "jahiacom:heroWithoutImage",
     name: "stack",
   },
-  ({ theme, "jcr:title": title, subtitle, background, ...cta }: Props) => (
+  ({ theme, "jcr:title": title, subtitle, background, ...cta }: Props, { currentNode }) => (
     <header
       className={clsx(classes.hero, classes.center, "_stack-4")}
       data-theme={theme}
@@ -20,7 +20,7 @@ export const HeroWithoutImage = jahiaComponent(
       {subtitle && <div className="_richtext" dangerouslySetInnerHTML={{ __html: subtitle }} />}
       {cta.ctaType !== "none" && (
         <p>
-          <MixinCTA cta={cta} />
+          <MixinCTA cta={cta} location="hero_banner" name={currentNode.getName()} />
         </p>
       )}
     </header>

@@ -19,7 +19,16 @@ jahiaComponent(
   ) => (
     <article className={classes.card}>
       <h3>
-        <a href={buildNodeUrl(currentNode)}>{title}</a>
+        <a
+          href={buildNodeUrl(currentNode)}
+          data-element-url={buildNodeUrl(currentNode)}
+          data-element-type="link"
+          data-element-text={title}
+          data-element-location="resources_library_section"
+          data-element-name={currentNode.getName()}
+        >
+          {title}
+        </a>
       </h3>
       <p style={{ flex: 1 }}>{description}</p>
       <p className={classes.categories}>

@@ -106,7 +106,7 @@ jahiaComponent(
       </div>
       {cta.ctaType !== "none" && (
         <p className="_center-4">
-          <MixinCTA cta={cta} />
+          <MixinCTA cta={cta} location="section" name={currentNode.getName()} />
         </p>
       )}
     </section>
