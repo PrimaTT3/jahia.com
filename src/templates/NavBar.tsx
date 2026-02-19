@@ -2,6 +2,7 @@ import {
   buildModuleFileUrl,
   buildNodeUrl,
   getChildNodes,
+  getSiteLocales,
   Island,
 } from "@jahia/javascript-modules-library";
 import type { JCRNodeWrapper } from "org.jahia.services.content";
@@ -87,6 +88,11 @@ export default function NavBar({
         // This can quickly get out of hand, if there are too many pages in the menu we need
         // to rethink the implementation
         entries: getEntries(root, current.getIdentifier()),
+        langs: Object.entries(getSiteLocales()).map(([language, locale]) => ({
+          language,
+          name: locale.getDisplayLanguage(locale),
+          href: buildNodeUrl(current, { language }),
+        })),
       }}
     >
       <a

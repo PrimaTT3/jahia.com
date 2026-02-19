@@ -13,11 +13,13 @@ export default function NavBarClient({
   secondaryCTA,
   children,
   entries,
+  langs,
 }: {
   primaryCTA?: { href: string; label: string } | false;
   secondaryCTA?: { href: string; label: string } | false;
   children: ReactNode;
   entries: Entry[];
+  langs: Array<{ language: string; name: string; href: string }>;
 }) {
   const [open, setOpen] = useState(false);
   const [submenu, setSubmenu] = useState<string | null>(null);
@@ -25,9 +27,11 @@ export default function NavBarClient({
   /** Used to disable the animation on first render */
   const [animate, setAnimate] = useState(false);
 
-  const subentries = entries.find(
-    (entry): entry is Group => !("href" in entry) && entry.title === submenu,
-  )?.children;
+  const subentries =
+    submenu === "lang"
+      ? langs.map(({ name, href }) => ({ title: name, href, current: false }))
+      : entries.find((entry): entry is Group => !("href" in entry) && entry.title === submenu)
+          ?.children;
 
   const { refs, floatingStyles } = useFloating({
     whileElementsMounted: autoUpdate,
@@ -122,6 +126,26 @@ export default function NavBarClient({
                   <span className="i-ri:arrow-down-wide-line" />
                 </button>
               ),
+            )}
+            {langs.length > 1 && (
+              <button
+                type="button"
+                className={classes.barLink}
+                onMouseMove={(event) => {
+                  refs.setReference(event.currentTarget);
+                  if (submenu) setAnimate(true);
+                  setOpen(true);
+                  setSubmenu("lang");
+                }}
+                onFocus={(event) => {
+                  refs.setReference(event.currentTarget);
+                  if (submenu) setAnimate(true);
+                  setOpen(true);
+                  setSubmenu("lang");
+                }}
+              >
+                <span className="i-ri:global-line" aria-label="Language / Langue" />
+              </button>
             )}
             {secondaryCTA && (
               <CTA href={secondaryCTA.href} icon secondary location="header" name="nav-secondary">
