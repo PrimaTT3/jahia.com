@@ -9,7 +9,7 @@ jahiaComponent(
   ({ contents }: { contents: string }, { currentNode }) => (
     <div style={{ background: "#fff", padding: "1rem" }}>
       <h4>File: {currentNode.getName()}</h4>
-      <div dangerouslySetInnerHTML={{ __html: contents }} />
+      <div className="_richtext" dangerouslySetInnerHTML={{ __html: contents }} />
     </div>
   ),
 );
