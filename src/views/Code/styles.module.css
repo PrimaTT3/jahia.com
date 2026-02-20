@@ -55,6 +55,13 @@
   padding: 1rem;
   overflow: auto;
 
+  pre {
+    padding: 1rem;
+    overflow: auto;
+    font-size: 0.875em;
+    background: var(--jahia-neutral-100);
+  }
+
   pre:last-child {
     --jahia-cut: 1.414rem; /* sqrt(parent --jahia-cut) */
 

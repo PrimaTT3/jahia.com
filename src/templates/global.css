@@ -87,10 +87,3 @@ hr {
 [hidden] {
   display: none !important;
 }
-
-pre {
-  padding: 1rem;
-  overflow: auto;
-  font-size: 0.875em;
-  background: var(--jahia-neutral-100);
-}
