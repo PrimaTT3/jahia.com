@@ -1,0 +1,5 @@
+# Jahia.com Template Set Changelog
+
+## 1.0.0
+
+Initial release (🎉)
