@@ -154,6 +154,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chachalog/types@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@chachalog/types@npm:0.5.0"
+  checksum: 10c0/c300659372d84d98c12409c40c762f8bbf62baf30582a8bad2a6b9e9e63c4d1ef40ace2f37c4f3c372c7c4ea1986220ae388fa72a5341dc3a7b401e57150fe8c
+  languageName: node
+  linkType: hard
+
 "@csstools/css-parser-algorithms@npm:^3.0.5":
   version: 3.0.5
   resolution: "@csstools/css-parser-algorithms@npm:3.0.5"
@@ -3175,6 +3182,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jahiacom@workspace:."
   dependencies:
+    "@chachalog/types": "npm:^0.5.0"
     "@eslint-react/eslint-plugin": "npm:^2.3.9"
     "@eslint/compat": "npm:^2.0.0"
     "@eslint/js": "npm:^9.39.1"

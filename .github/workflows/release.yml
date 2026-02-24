@@ -1,0 +1,44 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: null
+jobs:
+  prepare-next-release:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - run: npx chachalog@^0.5.0 prepare-next-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish-release:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+      - name: Build and publish
+        run: |
+          corepack enable && yarn install
+          yarn build
+      - run: npx chachalog@^0.5.0 publish-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package.tgz
+          path: dist/package.tgz
+      - name: Attach build artifact to release
+        run: |
+          name=$(yarn node -p 'process.env.npm_package_name')
+          version=$(yarn node -p 'process.env.npm_package_version')
+          tag=$name@$version
+          gh release upload $tag dist/package.tgz#$name-$version.tgz || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
