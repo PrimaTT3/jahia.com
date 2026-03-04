@@ -81,47 +81,72 @@ export default function NavBar({
       : [],
   );
 
+  const langs = Object.entries(getSiteLocales())
+    .filter(([language, locale]) => current.hasI18N(locale) && !invalidLanguages.has(language))
+    .map(([language, locale]) => ({
+      language,
+      name: capitalize(locale.getDisplayLanguage(locale)),
+      href: buildNodeUrl(current, { language }),
+    }));
+
   return (
-    <Island
-      component={NavBarClient}
-      props={{
-        // Menu CTAs
-        primaryCTA: primaryCTALink && {
-          href: buildNodeUrl(primaryCTALink),
-          label: site.getPropertyAsString("primaryCTALabel") || primaryCTALink.getDisplayableName(),
-        },
-        secondaryCTA: secondaryCTALink && {
-          href: buildNodeUrl(secondaryCTALink),
-          label:
-            site.getPropertyAsString("secondaryCTALabel") || secondaryCTALink.getDisplayableName(),
-        },
-        // This can quickly get out of hand, if there are too many pages in the menu we need
-        // to rethink the implementation
-        entries: getEntries(root, current.getIdentifier()),
-        langs: Object.entries(getSiteLocales())
-          .filter(
-            ([language, locale]) => current.hasI18N(locale) && !invalidLanguages.has(language),
-          )
-          .map(([language, locale]) => ({
-            language,
-            name: capitalize(locale.getDisplayLanguage(locale)),
-            href: buildNodeUrl(current, { language }),
-          })),
-      }}
-    >
-      {root && (
-        <a
-          href={buildNodeUrl(root)}
-          aria-current={current.getIdentifier() === root.getIdentifier() ? "page" : undefined}
-          data-element-url={buildNodeUrl(root)}
-          data-element-type="image"
-          data-element-text="Jahia Logo"
-          data-element-location="header"
-          data-element-name={`nav/logo`}
+    <>
+      <Island
+        component={NavBarClient}
+        props={{
+          // Menu CTAs
+          primaryCTA: primaryCTALink && {
+            href: buildNodeUrl(primaryCTALink),
+            label:
+              site.getPropertyAsString("primaryCTALabel") || primaryCTALink.getDisplayableName(),
+          },
+          secondaryCTA: secondaryCTALink && {
+            href: buildNodeUrl(secondaryCTALink),
+            label:
+              site.getPropertyAsString("secondaryCTALabel") ||
+              secondaryCTALink.getDisplayableName(),
+          },
+          // This can quickly get out of hand, if there are too many pages in the menu we need
+          // to rethink the implementation
+          entries: getEntries(root, current.getIdentifier()),
+          langs,
+        }}
+      >
+        {root && (
+          <a
+            href={buildNodeUrl(root)}
+            aria-current={current.getIdentifier() === root.getIdentifier() ? "page" : undefined}
+            data-element-url={buildNodeUrl(root)}
+            data-element-type="image"
+            data-element-text="Jahia Logo"
+            data-element-location="header"
+            data-element-name={`nav/logo`}
+          >
+            <img src={buildModuleFileUrl(jahia)} alt="Jahia" width="90" height="40" />
+          </a>
+        )}
+      </Island>
+      {langs.length > 1 && (
+        <div
+          style={{
+            position: "absolute",
+            width: "1px",
+            height: "1px",
+            padding: 0,
+            margin: "-1px",
+            overflow: "hidden",
+            clip: "rect(0,0,0,0)",
+            whiteSpace: "nowrap",
+            border: 0,
+          }}
         >
-          <img src={buildModuleFileUrl(jahia)} alt="Jahia" width="90" height="40" />
-        </a>
+          {langs.map(({ name, href }) => (
+            <a key={href} href={href} tabIndex={-1}>
+              {name}
+            </a>
+          ))}
+        </div>
       )}
-    </Island>
+    </>
   );
 }
