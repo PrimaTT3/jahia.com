@@ -46,7 +46,17 @@ jahiaComponent(
     name: "fullPage",
   },
   (
-    { "jcr:title": title, author, blogType, date, text, image, summary, seoKeywords }: Props,
+    {
+      "jcr:title": title,
+      "jcr:description": description,
+      author,
+      blogType,
+      date,
+      text,
+      image,
+      summary,
+      seoKeywords,
+    }: Props,
     { currentNode, currentResource },
   ) => {
     const { body, headings } = createToc(text || "");
@@ -104,7 +114,7 @@ jahiaComponent(
             "@id": `https://www.jahia.com${buildNodeUrl(currentNode)}`,
             "headline": title,
             "name": title,
-            "description": summary,
+            "description": summary || description,
             "datePublished": date,
             "dateModified": date,
             "author": author && {

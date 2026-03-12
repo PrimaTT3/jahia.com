@@ -10,7 +10,10 @@ jahiaComponent(
     componentType: "view",
     nodeType: "jahiacom:blogEntry",
   },
-  ({ "jcr:title": title, author, date, image, summary }: Props, { currentNode }) => {
+  (
+    { "jcr:title": title, "jcr:description": description, author, date, image, summary }: Props,
+    { currentNode },
+  ) => {
     return (
       <article className={classes.item}>
         <div className={clsx(classes.cover, "hideWhenSmall")}>
@@ -35,7 +38,7 @@ jahiaComponent(
             <time dateTime={date}>{date ? new Date(date).toLocaleDateString() : "no date"}</time>
           </div>
 
-          <p>{summary}</p>
+          <p>{summary || description}</p>
         </div>
       </article>
     );

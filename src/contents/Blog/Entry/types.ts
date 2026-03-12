@@ -9,4 +9,5 @@ export interface Props {
   "image"?: JCRNodeWrapper;
   "text"?: string;
   "seoKeywords"?: string[];
+  "jcr:description"?: string; /* Meta description, fall back for summary */
 }
