@@ -26,7 +26,7 @@ jahiaComponent(
   ) => (
     <article className={classes.card}>
       <div className={classes.cover}>{openGraphImage && <Image image={openGraphImage} />}</div>
-      <div className="_stack-2" style={{ padding: "1.5rem" }}>
+      <div className="_stack-2" style={{ padding: "1.5rem", flex: 1 }}>
         <h3>
           <a
             href={buildNodeUrl(currentNode)}
