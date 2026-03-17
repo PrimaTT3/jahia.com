@@ -136,7 +136,14 @@ jahiaComponent(
     if (renderContext.isEditMode()) {
       return (
         <span className="_pack-2">
-          {icon && <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "4rem" }} />}
+          {icon && (
+            <img
+              loading="lazy"
+              src={buildNodeUrl(icon)}
+              alt={title}
+              style={{ maxHeight: "4rem" }}
+            />
+          )}
           {title || "(title missing!)"}
         </span>
       );
@@ -154,10 +161,12 @@ jahiaComponent(
         data-element-location="footer"
         data-element-name={currentNode.getName()}
       >
-        {icon && <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "4rem" }} />}
+        {icon && (
+          <img loading="lazy" src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "7rem" }} />
+        )}
       </a>
     ) : icon ? (
-      <img src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "7rem" }} />
+      <img loading="lazy" src={buildNodeUrl(icon)} alt={title} style={{ maxHeight: "7rem" }} />
     ) : (
       <del>{title}</del>
     );

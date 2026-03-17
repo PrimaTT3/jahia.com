@@ -12,6 +12,7 @@ jahiaComponent(
     <article className={classes.card}>
       {icon && (
         <img
+          loading="lazy"
           src={`${buildNodeUrl(icon)}?w=96&h=96`}
           alt={icon.getPropertyAsString("jcr:title")}
           width="48"

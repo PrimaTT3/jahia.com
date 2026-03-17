@@ -122,7 +122,13 @@ export default function NavBar({
             data-element-location="header"
             data-element-name={`nav/logo`}
           >
-            <img src={buildModuleFileUrl(jahia)} alt="Jahia" width="90" height="40" />
+            <img
+              loading="lazy"
+              src={buildModuleFileUrl(jahia)}
+              alt="Jahia"
+              width="90"
+              height="40"
+            />
           </a>
         )}
       </Island>

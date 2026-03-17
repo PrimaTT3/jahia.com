@@ -33,7 +33,9 @@ jahiaComponent(
   ) => (
     <section className={classes.container}>
       <header className={classes.header}>
-        <h1>{logo ? <img src={buildNodeUrl(logo)} alt={title} title={title} /> : title}</h1>
+        <h1>
+          {logo ? <img loading="lazy" src={buildNodeUrl(logo)} alt={title} title={title} /> : title}
+        </h1>
       </header>
       <div className={clsx(classes.grid, "_container")}>
         <article className={classes.card}>

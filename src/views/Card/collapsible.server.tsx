@@ -16,6 +16,7 @@ jahiaComponent(
         <button type="button" className={classes.toggle}>
           {icon && (
             <img
+              loading="lazy"
               src={`${icon.getUrl()}?w=48&h=48`}
               alt={icon.getPropertyAsString("jcr:title")}
               width="24"

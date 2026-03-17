@@ -26,7 +26,7 @@ export const Image = ({
 
   // Ignore vector images
   if (mime.startsWith("image/svg") || mime.startsWith("image/vnd"))
-    return <img src={baseSrc} alt={alt} {...props} />;
+    return <img loading="lazy" src={baseSrc} alt={alt} {...props} />;
 
   const width = image.getProperty("j:width").getLong();
   const height = image.getProperty("j:height").getLong();
@@ -47,7 +47,9 @@ export const Image = ({
 
   return (
     <img
+      loading="lazy"
       src={src}
+      sizes="auto"
       srcSet={srcSet.length > 0 ? srcSet.join(", ") : undefined}
       alt={alt}
       width={width}
