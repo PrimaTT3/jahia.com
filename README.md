@@ -1,12 +1,14 @@
-# Welcome!
+# Jahia.com is Open Source!
 
-Your JavaScript module was successfully created. If this is your first time creating a module, you may want to consult the [Getting Started guide](https://github.com/Jahia/javascript-modules/tree/main/docs/1-getting-started/1-dev-environment#create-a-new-project).
+This repository contains the [JavaScript Module](https://academy.jahia.com/tutorials-get-started/front-end-developer/introduction) that powers [**Jahia.com**](https://www.jahia.com). It defines the page templates, content types, views, and UI components used to build and render the public Jahia website.
 
-This README assumes you have a working development environment with Node.js, Yarn and Docker installed and configured. Please refer to the [Getting Started](https://github.com/Jahia/javascript-modules/tree/main/docs/1-getting-started/1-dev-environment#pre-requisites) guide if you need help setting up your environment.
+This module is source-available but not open source. It is licensed under the [Jahia Sustainable Enterprise License (JSEL)](./LICENSE) and cannot be used outside of the official Jahia.com website. However, it is available for learning and reference purposes. We encourage you to explore the code, understand how it works, and use it as inspiration for your own projects.
 
 ## Getting Started
 
-This module is accompanied by a Docker-based development environment. To get started, follow these steps:
+To build and run this module locally you will need a working development environment with Node.js, Yarn and Docker installed and configured. Please refer to the [Getting Started](https://github.com/Jahia/javascript-modules/tree/main/docs/1-getting-started/1-dev-environment#pre-requisites) guide if you need help setting up your environment.
+
+Once your environment is ready, use the following commands to start a local Jahia instance and run the module in development mode:
 
 ```bash
 # Install dependencies
@@ -16,26 +18,18 @@ yarn install
 docker compose up --wait
 
 # Build the module and start the dev mode
-yarn build && yarn dev
+yarn dev
 ```
 
-These commands will start a Jahia instance in a Docker container, build your module and start a watcher that will rebuild the module every time you make changes to the source code.
+Contributions to this repository are not explicitely forbidden, but are very unlikely to be accepted.
 
-## Commands
+## Content Types
 
-This module comes with some scripts to help you develop your module. You can run them with `yarn <script>`:
+The module defines custom content types under the `jahiacom` and `jahiacommix` namespaces. You will find common patterns:
 
-| Category     | Script                | Description                                                             |
-| ------------ | --------------------- | ----------------------------------------------------------------------- |
-| Build        | `build`               | Produces a deployable artifact that can be uploaded to a Jahia instance |
-| Build        | `deploy`              | Pushes the build artifact to a Jahia instance                           |
-| Development  | `dev` (alias `watch`) | Watches for changes and rebuilds the module                             |
-| Code quality | `format`              | Runs Prettier (a code formatter) on your code                           |
-| Code quality | `lint`                | Runs ESLint (a linter) on your code                                     |
-| Utils        | `clean`               | Removes build artifacts                                                 |
-| Utils        | `package`             | Packs distributions files in a `.tgz` archive inside the `dist/` folder |
-| Utils        | `watch:callback`      | Called every time a build succeeds in watch mode                        |
+- A blog with authors
+- A sectioning component
+- Automated OpenGraph metadata generation
+- A generated navigation menu based on the content tree
 
-## Configuration
-
-If you don't use default configuration for the Docker container port and credentials, please modify the provided `.env` file.
+You are free to use these content types as inspiration for your own projects.
