@@ -7,34 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-      - run: corepack enable
+      - uses: jdx/mise-action@v4
       - run: yarn install
       - run: yarn lint
       - run: yarn build
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
-          name: package.tgz
           path: dist/package.tgz
-
-      # If the build is successful and the branch is main, push the module to Jahia
-      - if: github.ref == 'refs/heads/main'
-        run: node jahia-deploy.js
-        env:
-          JAHIA_HOST: ${{ secrets.JAHIA_HOST }}
-          JAHIA_AUTHORIZATION: ${{ secrets.JAHIA_AUTHORIZATION }}
-
-  lighthouse:
-    runs-on: ubuntu-latest
-    needs: build-and-push
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-      - uses: browser-actions/setup-chrome@v2
-      - run: |
-          npx lighthouse@13 '${{ secrets.JAHIA_HOST }}/sites/jahiacom/home.html' \
-            --extra-headers '{"Authorization": "${{ secrets.JAHIA_AUTHORIZATION }}"}' \
-            --quiet --chrome-flags='--headless' --output=json \
-          | jq '.categories | map_values(.score)'
+          archive: false
